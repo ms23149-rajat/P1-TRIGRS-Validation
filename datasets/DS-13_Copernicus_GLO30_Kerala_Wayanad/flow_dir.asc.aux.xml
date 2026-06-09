@@ -1,0 +1,20 @@
+<PAMDataset>
+  <Metadata>
+    <MDI key="AREA_OR_POINT">Area</MDI>
+    <MDI key="TIFFTAG_SOFTWARE">GRASS GIS 8.3.2 with GDAL 3.8.4</MDI>
+  </Metadata>
+  <PAMRasterBand band="1">
+    <Description>flow_dir</Description>
+    <ColorInterp>Gray</ColorInterp>
+    <Metadata>
+      <MDI key="COLOR_TABLE_RULES_COUNT">2</MDI>
+      <MDI key="COLOR_TABLE_RULE_RGB_0">-8.000000e+00 0.000000e+00 0 0 0 255 255 255</MDI>
+      <MDI key="COLOR_TABLE_RULE_RGB_1">0.000000e+00 8.000000e+00 255 255 255 0 0 0</MDI>
+      <MDI key="STATISTICS_MAXIMUM">8</MDI>
+      <MDI key="STATISTICS_MEAN">4.4454475308641</MDI>
+      <MDI key="STATISTICS_MINIMUM">-8</MDI>
+      <MDI key="STATISTICS_STDDEV">2.1516759080532</MDI>
+      <MDI key="STATISTICS_VALID_PERCENT">100</MDI>
+    </Metadata>
+  </PAMRasterBand>
+</PAMDataset>
