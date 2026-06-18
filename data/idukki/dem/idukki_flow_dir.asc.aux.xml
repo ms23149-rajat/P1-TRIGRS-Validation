@@ -1,0 +1,25 @@
+<PAMDataset>
+  <Metadata>
+    <MDI key="SOFTWARE">GRASS GIS 8.3.2 with GDAL 3.8.4</MDI>
+  </Metadata>
+  <PAMRasterBand band="1">
+    <Description>drain</Description>
+    <ColorInterp>Palette</ColorInterp>
+    <ColorTable>
+      <Entry c1="255" c2="255" c3="255" c4="255" />
+      <Entry c1="224" c2="224" c3="224" c4="255" />
+      <Entry c1="192" c2="192" c3="192" c4="255" />
+      <Entry c1="160" c2="160" c3="160" c4="255" />
+      <Entry c1="128" c2="128" c3="128" c4="255" />
+      <Entry c1="96" c2="96" c3="96" c4="255" />
+      <Entry c1="64" c2="64" c3="64" c4="255" />
+      <Entry c1="32" c2="32" c3="32" c4="255" />
+      <Entry c1="0" c2="0" c3="0" c4="255" />
+    </ColorTable>
+    <Metadata>
+      <MDI key="COLOR_TABLE_RULES_COUNT">2</MDI>
+      <MDI key="COLOR_TABLE_RULE_RGB_0">-8.000000e+00 0.000000e+00 0 0 0 255 255 255</MDI>
+      <MDI key="COLOR_TABLE_RULE_RGB_1">0.000000e+00 8.000000e+00 255 255 255 0 0 0</MDI>
+    </Metadata>
+  </PAMRasterBand>
+</PAMDataset>

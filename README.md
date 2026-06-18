@@ -6,11 +6,17 @@ This repository documents the installation, compilation, and benchmark
 testing of TRIGRS (Transient Rainfall Infiltration and Grid-Based Regional
 Slope Stability Analysis) as part of the IIT Kanpur SURGE 2026 Project P1.
 
-**Scope note:** This repository covers installation and the four benchmark
-test cases bundled with the TRIGRS v2.1 distribution (Tutorial, MinorCreek,
-Flume, SY91). It does not cover the separate real-terrain application
-exercise (Wayanad/Idukki, 2018 event), which is documented elsewhere as an
-independent, ongoing effort with its own status.
+**Scope note:** This repository covers installation, compilation, and
+benchmark testing (Tutorial, MinorCreek, Flume, SY91), as well as a
+real-terrain application exercise for Idukki, Kerala, attempting to
+reproduce a rainfall-induced shallow landslide simulation for the August
+2018 Kerala flood event using published soil parameters and real ERA5
+rainfall data. The benchmark tests are quantitatively/qualitatively
+validated as detailed below. The Idukki application is a complete,
+reproducible preprocessing-through-execution pipeline, but did not achieve
+a physically meaningful temporal Factor-of-Safety response — see
+[Idukki Application](#idukki-real-terrain-application) below for full
+detail on what worked and what remains unresolved.
 
 ## Repository Structure
 
@@ -175,6 +181,67 @@ benchmark validation against published reference data remains an open item,
 documented honestly per project guidance that "validation pending / partial"
 is an acceptable status for this phase.
 
+## Idukki Real-Terrain Application
+
+### Objective
+
+Reproduce a physically meaningful rainfall-induced shallow landslide
+simulation for Idukki district, Kerala, using soil parameters published in
+Reichenbach et al. (2023, ISPRS Int. J. Geo-Inf.) and real rainfall data
+for the August 2018 Kerala flood event, as a real-terrain complement to the
+synthetic benchmark tests above.
+
+### What was completed
+
+- Full DEM, slope, and soil-zone preprocessing pipeline for Idukki, built
+  from scratch (no pre-packaged TRIGRS dataset existed for this site,
+  unlike the benchmark cases).
+- A persistent TopoIndex non-convergence issue (the array-sort routine
+  stalling indefinitely on a fixed correction count) was diagnosed as
+  cyclic dependencies in the flow-direction grid and resolved with a
+  DFS-based cycle-breaking script, [`break_cycles.py`](break_cycles.py).
+  TopoIndex now converges and produces all required routing files.
+- Real ERA5 rainfall was extracted for the correct Idukki coordinates
+  (~9.9N, 77.0E) for August 11-19, 2018, capturing the antecedent build-up
+  and the Aug 15 flood peak (70.8 mm/day).
+- TRIGRS runs end-to-end without errors using the published soil
+  parameters (cohesion, friction angle, unit weight, Ksat, hydraulic
+  diffusivity) and the real rainfall series.
+- Pressure head becomes non-zero and water table depth grids respond
+  physically to rainfall input (confirmed: ~1.06 million cells shift
+  between t=0 and t=24h).
+
+### What was not achieved
+
+- The Factor of Safety output (`TRfs_min_idukki_*.asc`) is identical
+  across all output timesteps despite confirmed water table movement.
+  This was traced to `TRfs_min`/`TRp_at_fs_min` storing the running
+  minimum across the full simulation rather than a per-timestep snapshot,
+  so they report the worst case (typically the initial condition)
+  regardless of later dynamics.
+- The underlying unsaturated-zone switch (`igcap`, governed by
+  `dcf = depth - 1/alpha`) is highly sensitive for the thin soil depths in
+  this dataset (0.5-3.5 m); `dcf` frequently evaluates to <=0, forcing a
+  fallback to the saturated model, which shows negligible transient
+  response because period rainfall intensity rarely exceeds Ksat for more
+  than one period at a time.
+- Multiple parameter combinations were attempted (alpha 0.1-3.0 m-1, water
+  table depth 0.1-2.0 m, flow direction slope/hydro/gener, psi0 on/off,
+  saturated vs. unsaturated forced via source patch) without producing a
+  temporally-varying FoS grid output.
+
+### Status
+
+The Idukki preprocessing and execution pipeline is complete and
+reproducible end-to-end. Per-timestep FoS extraction remains an open
+item, requiring either (a) parsing the detailed Z-P-Fs listing file
+directly rather than relying on the `TRfs_min` envelope grids, or
+(b) further investigation into the `igcap`/`dcf` threshold behaviour in
+`unsfin.f95`/`trini.f95` for shallow soil profiles. Documented here as a
+known limitation, consistent with the validation-pending status used
+elsewhere in this repository where a result is incomplete but the
+process and findings are reproducible and honestly reported.
+
 ## References
 
 - Baum, R.L., Savage, W.Z., and Godt, J.W., 2008, TRIGRS-A Fortran program for
@@ -188,3 +255,6 @@ is an acceptable status for this phase.
 - Srivastava, R., and Yeh, T.-C.J., 1991, Analytical solutions for
   one-dimensional, transient infiltration toward the water table in
   homogeneous and layered soils: Water Resources Research, v. 27, p. 753-762.
+- Reichenbach, P., and others, 2023, Physically based slope stability
+  model to evaluate timing and distribution of rainfall-induced shallow
+  landslides: ISPRS International Journal of Geo-Information, v. 12, no. 2.
