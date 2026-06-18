@@ -1,0 +1,1 @@
+10-Jun-2026: Started Idukki TRIGRS project using published parameters from Thomas et al. (2023).

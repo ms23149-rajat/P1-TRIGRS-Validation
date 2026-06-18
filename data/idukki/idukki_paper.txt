@@ -1,0 +1,3674 @@
+International Journal of
+
+Geo-Information
+Article
+
+Assessment of a Dynamic Physically Based Slope Stability
+Model to Evaluate Timing and Distribution of Rainfall-Induced
+Shallow Landslides
+Juby Thomas 1 , Manika Gupta 1, *, Prashant K. Srivastava 2
+1
+2
+
+3
+
+*
+
+Citation: Thomas, J.; Gupta, M.;
+Srivastava, P.K.; Petropoulos, G.P.
+Assessment of a Dynamic Physically
+
+and George P. Petropoulos 3
+
+Department of Geology, University of Delhi, Delhi 110007, India
+Remote Sensing Laboratory, Institute of Environment and Sustainable Development,
+Banaras Hindu University, Varanasi 221005, India
+Department of Geography, Harokopio University of Athens, El. Venizelou 70, 17671 Athens, Greece
+Correspondence: manikagup@gmail.com
+
+Abstract: Shallow landslides due to hydro-meteorological factors are one of the most common
+destructive geological processes, which have become more frequent in recent years due to changes
+in rainfall frequency and intensity. The present study assessed a dynamic, physically based slope
+stability model, Transient Rainfall Infiltration and Grid-Based Slope Stability Model (TRIGRS), in
+Idukki district, Kerala, Western Ghats. The study compared the impact of hydrogeomechanical
+parameters derived from two different data sets, FAO soil texture and regionally available soil texture,
+on the simulation of the distribution and timing of shallow landslides. For assessing the landslide
+distribution, 1913 landslides were compared and true positive rates (TPRs) of 68% and 60% were
+obtained with a nine-day rainfall period for the FAO- and regional-based data sets, respectively.
+However, a false positive rate (FPR) of 36% and 31% was also seen, respectively. The timing of
+occurrence of nine landslide events was assessed, which were triggered in the second week of June
+2018. Even though the distribution of eight landslides was accurately simulated, the timing of
+only three events was found to be accurate. The study concludes that the model simulations using
+parameters derived from either of the soil texture data sets are able to identify the location of the event.
+However, there is a need for including a high-spatial-resolution hydrogeomechanical parameter data
+set to improve the timing of landslide event modeling.
+
+Based Slope Stability Model to
+Evaluate Timing and Distribution of
+
+Keywords: rainfall-induced landslides; physically based model; TRIGRS; Western Ghats
+
+Rainfall-Induced Shallow Landslides.
+ISPRS Int. J. Geo-Inf. 2023, 12, 105.
+https://doi.org/10.3390/
+ijgi12030105
+Academic Editors: Walter Chen,
+Fuan Tsai and Wolfgang Kainz
+Received: 24 November 2022
+Revised: 23 February 2023
+Accepted: 24 February 2023
+Published: 2 March 2023
+
+Copyright: © 2023 by the authors.
+Licensee MDPI, Basel, Switzerland.
+This article is an open access article
+distributed under the terms and
+conditions of the Creative Commons
+Attribution (CC BY) license (https://
+creativecommons.org/licenses/by/
+4.0/).
+
+1. Introduction
+Shallow landslides due to hydro-meteorological factors are one of the most common
+destructive geological processes on the Earth’s surface and are responsible for the loss of
+lives, both human and livestock, every year, in mountainous regions. Although landslide
+occurrences are confined to hillsides and steep terrain, the devastating after-effects are not
+only limited to their origin but also affect the downstream areas. The cascading effects
+of frequent landslides, often with intense precipitation, create innumerable adversities
+for people and ecosystems in both highlands and lowlands [1–3]. Geologically, shallow,
+rainfall-induced landslides have an important role as an agent of shaping mountainous
+landscapes. While modifying the topography and renewing the terrain and ecosystems,
+both in the upstream and downstream areas, landslides cause the degradation of fertile land,
+damage to agricultural land, traffic disruption, and destruction of infrastructures, especially
+settlements, and have many other indirect social and economic implications [4–10].
+Although landslides are triggered by geological (volcanic eruption, earthquakes, etc.)
+and anthropogenic (slope or toe excavation, slope loading, drawdown and irrigation,
+blast-vibrations, etc.) factors, hydro-meteorological factors still remain the major extrinsic
+factor [6,11]. In tectonically stable areas, e.g., southern peninsular India where this study
+
+ISPRS Int. J. Geo-Inf. 2023, 12, 105. https://doi.org/10.3390/ijgi12030105
+
+https://www.mdpi.com/journal/ijgi
+
+ISPRS Int. J. Geo-Inf. 2023, 12, 105
+
+2 of 31
+
+was carried out, hydro-meteorological (intense rainfall) factors are the significant triggers,
+in addition to anthropogenic activities.
+The current trends and projections of precipitation patterns show an increase in occurrence of high-intensity rainfall events globally, and heavy rainfalls in a short span of
+time will trigger a greater number of shallow landslides. As observed, a higher number of landslides have been reported globally because of the surge in the occurrence of
+frequent intense-localized precipitation events. The increased human presence in the
+mountainous regions makes the landslides and their immediate effects more severe and
+destructive [12,13]. With the alarming situation of climate change, population expansion,
+and uncontrolled exploitation of mountainous regions, tropical and subtropical mountainous areas such as Western Ghats, where this study was carried out, will be the worst
+affected areas by any typical hydro-geotechnical disaster such as landslides [6,14].
+Shallow landslides are defined as slope failures that are generally confined to a depth
+of less than 3 m [15–18], and depth is determined as the distance to the failure plane
+from the surface. The failure plane, often termed as the slip surface, is between the soil
+column and bedrock or within the soil column where a sharp contrast in permeability
+is present [19,20]. The extent of a geographical area directly hit by landslides, especially
+shallow, rainfall-induced landslides, is often much smaller than the area affected by similar
+natural hazards such as floods, droughts, volcanic eruptions, and earthquakes. However,
+landslides are more frequent and recurring than many of the above-mentioned disasters
+and cause extensive destructions [6,8,21–25]. Although an individual rainfall-induced
+shallow landslide involves less runout volume, it has the potential to evolve into debris or
+earth flows and thereby gather more channel sediments and cause significant destruction
+along its path and in the downstream areas [3,26,27].
+In India, landslides are one of the most common geohazards and are often triggered by
+hydrometeorological factors. India’s mountainous regions experience enormous pressure
+due to increased human activities along with adversities due to climate change. The
+impacts of geohazards such as rainfall-induced landslides have intensified. Since it is
+impossible to control the occurrence of rainfall-induced landslides, it is best advised to
+deploy comprehensive strategies to mitigate the effects. Additionally, it has to be noted
+that rainfall-induced landslides are site-specific and their destructive power is limited to
+the area of origin and the channels along the downstream areas. Adequate information
+on when and where a landslide may occur will help the policymakers and administrators
+with issuing site- or region-specific early warnings.
+A number of methods are used for computing the information on when and where a
+landslide will occur [28]. Conventionally, the methods utilized for landslide hazard assessments or slope stability analysis to demarcate landslides can be classified into qualitative
+and quantitative methods [29–31]. The qualitative approaches can be further categorized
+into inventory-based mapping and heuristic methods. Inventory-based landslide assessments are one of the simplest forms of landslide hazard assessment, in which historical
+information of individual landslides are directly collected by visiting the affected area or
+through various remote sensing techniques [32,33]. Heuristic methods provide information
+on the degree and type of risks based on the knowledge and experience of an expert [34,35].
+Because assigning weightage and ranking to causative and triggering parameters are highly
+subjective and localized, the expert with most experience and knowledge might produce
+the best results. Since each area is unique and complicated in its own ways, the ranking
+and weightage for one region might not produce desirable results for another region. The
+quantitative methods include two major categories: statistical- or stochastic- and physically
+based models. The former method employs mathematical models to assess slope stability
+based on the weighting assigned to the causative factors [36,37]. The weightages are relative,
+and a possibility of generalization is always present in the statistical methods. Statistical
+methods often work in combination with heuristic methods through bivariate, multivariate,
+or neural network analysis. Even though physically based models are relatively complicated compared with the rest of the methods, they are most suitable in local-scale and
+
+ISPRS Int. J. Geo-Inf. 2023, 12, 105
+
+3 of 31
+
+site-specific studies. Landslide hazard is determined using process-based slope stability
+models that consider the interplay of causal factors [38,39]. The results are often expressed
+in terms of a Factor of Safety (FoS), where lesser values indicate unstable areas.
+Regardless of the complexity and data intensity of computing, physically based models are widely used to forecast rainfall-induced landslides because of the increased control over the hydrological and geotechnical aspects [40,41]. Physically based models in
+Geographic Information System (GIS) platforms have provided promising results in computing the timing and localization of shallow, rainfall-induced landslides at the regional
+scale [16,22,25,42–46]. These models can be employed to model slope stability ranging
+for areas from tens to thousands of kilometers squared. r.rotstab [47], High Resolution
+Slope Stability Simulator (HIRESS) [48], GEOtop-FS [49], Shallow Landslides Instability
+Prediction (SLIP) [50], Stability Index Mapping (SINMAP) [51], Shallow Slope Stability
+Model (SHALSTAB) [52], distributed Shallow Landslide Analysis Model (dSLAM) [53],
+and Transient Rainfall Infiltration and Grid-Based Regional Slope Stability (TRIGRS) [54]
+are some of the available physically based models. SINMAP, SHALSTAB, and TRIGRS are
+widely used in modeling the slope stability of hills. The models have been tested and validated in diverse geological, geomorphological, and climatic conditions globally. SINMAP,
+a probabilistic steady-state model, and SHALSTAB, a deterministic steady-state model,
+require geotechnical parameters and altitude information to compute slope stability and
+combine the Mohr–Coulomb infinite slope stability model with a steady-state hydrological
+model [55]. The illustration of slope failure mechanism is achieved mainly through the
+computation of FoS in physically based models. The FoS is the ratio of shear strength
+(resisting or stabilizing forces) to shear stress (driving or destabilizing forces) parallel to the
+surface. The SLIP model considers the saturation of part of the soil column as the major
+factor affecting slope failure. It assumes that the terrain is stable due to shear strength, and
+water flows easily into the soil column as the rainfall progresses. Large portions of the soil
+eventually become saturated, and the soil sliding process starts. SLIP assesses the stability
+of terrain using the FoS computed through the limit equilibrium method.
+TRIGRS, a transient model, considers hydrological information in addition to geotechnical parameters and altitude information. Because TRIGRS considers the transient effects
+of rainfall on infiltration and computes the change in pore water pressure (PWP) and
+FoS [54], time varying analysis of slope stability is possible with TRIGRS.
+TRIGRS has been previously utilized for regional-scale analysis in various studies and
+has been found to produce reliable results for transient rainfall events varying from hours
+to days [42,56,57]. In another study, importance was placed on the transient pore water
+pressure, which may result in the triggering of a slip [58]. In a study, based on flume tests,
+it was suggested that the initial porosity and saturation have an impact on the prediction
+capacity of the SLIP model [59]. It has been noted that another model, SHALSTAB, considers a single set of geotechnical values for a whole basin. The study emphasized the spatial
+discretization of these parameters to improve the predictive nature of the model [60]. One
+of the major limitations of SHALSTAB and SINMAP is the assumption of uniform thickness
+of soil, hydraulic conductivity, and steady-state shallow subsurface flow. Additionally, the
+slide is assumed to be translational, and the hydrological boundaries always follow the
+topography of the terrain [22]. While SHALSTAB and SINMAP are suggested for primary
+investigations of terrain stability, TRIGRS is often recommended to model specific events
+(such as the 2018 monsoon rainfall events in the study area) and early warning systems [45].
+Although considering the soil as homogeneous has been found to over-estimate unstable pixels when using TRIGRS, it has been successfully utilized at the regional scale. As
+stated in one of the studies, the model parameters were set to be constant for the study
+area, which resulted in false positives [61]. These studies have stated the limitation of the
+model lies in the accuracy of the hydrogeomechanical parameters, which may need to be
+obtained through field investigations. These parameters are known to be spatially variable.
+Additionally, the lack of field data and laboratory analysis at the regional scale makes these
+parameters scarce. So, most of the studies are based on the inverse optimization of these
+
+ISPRS Int. J. Geo-Inf. 2023, 12, 105
+
+4 of 31
+
+parameters through the utilization of landslide inventories [56,61–63]. However, most of
+the areas lack landslide inventories with correct timing of the landslide occurrence, creating
+uncertainty in the optimization. The present study used the TRIGRS model [54,64,65] to
+compute the timing and distribution of shallow, rainfall-induced landslides in a catchment
+region in Western Ghats, India. In this study, the soil hydraulic parameters (SHPs) were
+based on two different soil texture maps available at different scales, and their influences
+on the occurrence of a landslide event were compared. Therefore, the impact of hydrogeomechanical parameters on the determination of FoS and PWP was quantified along
+hill slopes based on two soil texture data sets (FAO-based and regional), which differ in
+introducing soil heterogeneity to the model.
+2. Materials and Methods
+A catchment area was delineated to execute the TRIGRS, and the catchment area
+lies mostly in the district of Idukki, Kerala, India, being on the windward side of the
+southern part of Western Ghats. Figure 1 shows the geographical location of the study
+area along with the administrative boundaries and extent of Western Ghats. The present
+study examined the distribution of 1913 landslides as a result of rainfall events during
+the devastating 2018 monsoon period (Figure 2) along with timing of 9 selected shallow
+landslides in the study area (Figure 3).
+The study area lies in one of the most landslide-prone areas in India, and both climate
+and topography play a significant role as causative and triggering factors [66] for the
+occurrences of landslides in the region. The tropical climate with intense rainfall and
+scorching summers have resulted in a thick overburden of poorly consolidated soil, with
+thickness often ranging up to 5 m (depending upon the slope) in the study area [67,68].
+The combination of highly weathered bedrock, steep slopes, and heavy precipitation in the
+monsoon season makes the study area an ideal location for understanding, rainfall-induced
+shallow landslides.
+The study area receives the majority of its rainfall in two monsoon periods (South West
+monsoon from June to September and North East monsoon from October to November).
+Additionally, the high-altitude and steep terrain of Western Ghats receives more rainfall
+than the low-lying areas due to orographic effect of Western Ghats [67,68].
+Moreover, the devastating impacts of global climate changes have already been observed in the study area in the form of extreme rainfall, which are expected to increase in
+the coming years, which will in turn increase the frequency of slope failure in the study
+area [69–74]. According to the India Meteorological Department (IMD), the entire state of
+Kerala received 2346.6 mm of rainfall between 1 June 2018 and 19 August 2018 rather than
+the expected 1649.5 mm, which was about 42% above the normal rainfall rate. Furthermore,
+the district of Idukki received 3555.5 mm rainfall instead of the normal 1851.7 mm from
+1 June 2018 to 22 August 2018 [75]. This is a 92% increase from the normal rainfall, and the
+IMD has identified this as large-excess deviation from normal rainfall. On 9 August, three
+stations in the catchment region delineated for this study received 255 mm, 254 mm, and
+211 mm of rain. The intense and incessant rainfall received in the steep and undulating
+terrain of Western Ghats triggered multiple landslides in the study area on 9 and 11 June
+2018 [76].
+
+ISPRS Int. J. Geo-Inf. 2023, 12, 105
+
+ISPRS Int. J. Geo-Inf. 2023, 12, x FOR PEER REVIEW
+
+5 of 31
+
+5 of 33
+
+Figure 1. Geographical location of the study area. (A) Location of Western Ghats in the political
+map of India. (B) Relative positions of Kerala and the catchment region selected for the study in the
+Western Ghats. (C) Geographical location of the catchment region chosen for the study.
+
+ISPRS Int. J. Geo-Inf. 2023, 12, x FOR PEER REVIEW
+
+ISPRS Int. J. Geo-Inf. 2023, 12, 105
+
+6 of 33
+
+Figure 1. Geographical location of the study area. (A) Location of Western Ghats in the political6 of
+map
+31
+of India. (B) Relative positions of Kerala and the catchment region selected for the study in the
+Western Ghats. (C) Geographical location of the catchment region chosen for the study.
+
+Figure 2. Distribution of landslides in the catchment area. The red dots in the catchment area repreFigure 2. Distribution of landslides in the catchment area. The red dots in the catchment area
+sent the locations of the landslides occurred during the 2018 monsoon period.
+represent the locations of the landslides occurred during the 2018 monsoon period.
+
+ISPRS Int. J. Geo-Inf. 2023, 12, x FOR PEER REVIEW
+ISPRS Int. J. Geo-Inf. 2023, 12, 105
+
+7 of 33
+7 of 31
+
+Figure 3. Locations of the 9 events selected for finding the timing of initiation through computing
+Figure
+3. Locations
+of the
+events
+selected
+for(A)
+finding
+the timing
+of initiation
+FoS
+as part
+of the study
+in 9the
+catchment
+area.
+Geographical
+location
+of thethrough
+landslidecomputing
+locations.
+FoSLandslide
+as part of the
+in the catchment
+area.Approximate
+(A) Geographical
+location
+of the landslide
+(B)
+1 tostudy
+9 in Google
+Earth images.
+shapes
+of Landslides
+2, 4, 5, 6,locations.
+7, and 8
+(B)
+Landslide
+to Google
+9 in Google
+images.
+Approximate
+shapes of Landslides 2, 4, 5, 6, 7, and 8
+were
+available1on
+EarthEarth
+and given
+as six
+tiles.
+were available on Google Earth and given as six tiles.
+
+The study area lies in one of the most landslide-prone areas in India, and both climate
+2.1. Data Sets
+and topography play a significant role as causative and triggering factors [66] for the ocThe determination
+of the
+landslide
+based
+models
+currences
+of landslides in
+region.occurrences
+The tropicalthrough
+climatephysically
+with intense
+rainfall
+andinvolves
+scorchmultiple
+levels
+of
+complexity.
+The
+output
+of
+models
+such
+as
+TRIGRS
+are
+significantly
+ing summers have resulted in a thick overburden of poorly consolidated soil, with thickdependent
+on the resolution
+precision upon
+of thethe
+input
+datainsets.
+following
+data sets,
+ness
+often ranging
+up to 5 mand
+(depending
+slope)
+the The
+study
+area [67,68].
+The
+materials, tools,
+and software
+were bedrock,
+used for understanding
+theheavy
+timingprecipitation
+and distribution
+of
+combination
+of highly
+weathered
+steep slopes, and
+in the
+rainfall-induced
+shallow
+landslides
+in
+the
+study
+area.
+A
+detailed
+description
+of
+the
+data
+monsoon season makes the study area an ideal location for understanding, rainfall-insets used
+for thelandslides.
+present study is provided in the sections below.
+duced
+shallow
+
+ISPRS Int. J. Geo-Inf. 2023, 12, 105
+
+8 of 31
+
+2.1.1. Slope Failure Inventory
+The entire state of Kerala received one of the most severe rainfalls in the century
+during June and August 2018, which triggered thousands of landslides, affecting millions
+of people [77–80]. The severity of the disaster led to studies on understanding the causes of
+slope failures in the region. The National Remote Sensing Center-Indian Space Research
+Organization (NRSC-ISRO), Geological Survey of India (GSI), and Kerala State Disaster
+Management Authority (KSDMA) generated various landslide inventories primarily by
+analysing pre- and post-disaster high-resolution satellite images. Later, Hao et al. improvised a landslide inventory by adding missing events and eliminating falsely detected
+landslides [66]. Further details on the elimination of erroneous entries and utilization of
+object-based image analysis for automated landslide detection can be found in [66]. The
+present study used the spatial information of the 1913 landslide events that occurred in
+the study area during 2018 monsoon rainfall based on the above-mentioned landslide
+inventory.
+Along with the spatial information on the distribution of landslides in the study area,
+9 slope failures in the study area that were triggered by the very intense rainfall between
+1 and 19 June 2018 were validated for the timing of the occurrence of event. The events
+were documented by Geological Survey of India (GSI) under the program “Post disaster
+studies in Kerala” (FSP No: M4SI/NC/SR/SU-KRL/2018/21108).
+Landslide 1 (Figure 3) happened in the Survey of India (SOI) toposheet number
+58F/04 in Kallar Vettiyar, and the event happened on 9 June 2018. It had a dimension of
+60 m × 30 m × 60 m (length × width × height), and the depth to the failure surface as
+observed was less than 4 m. The failure can be classified as a rainfall-induced shallow planar
+landslide. The area was an agricultural land with major crop being cardamom (low height
+plantation with no deep roots). Landslide 2 (Figure 3) was a shallow planar rainfall-induced
+landslide in a locality called Anachal (SOI toposheet number 58F/04) and occurred in the
+afternoon, around 2 PM, of 11 June, 2018. The slide had a length of 20 m, width of 30 m,
+and a height of 25 m. The failure surface was less than 3 m from the top, and the overlying
+material was very loose coarse-grained in situ soil. The slide was caused by a rise in the
+PWP as a result of a continuous downpour on the overlying material. A nearby four-story
+building collapsed as a result of the slide. Landslide 3 (Figure 3) happened on 9 June 2018
+and was a shallow planar failure due to incessant rainfall. It happened in a locality called
+Eetticity, which lies in SOI toposheet 58F/04. The failure was a shallow planar rainfallinduced landslide with a 60 m length, 50 m width, and 45 m height. The overlying soil was
+planted with mixed plantations. On 9 June 2018, another landslide (landslide 4, Figure 3)
+happened in a locality called Kallimali (SOI toposheet number 58G/01). The landslide
+had a dimension of 45 m × 8 m × 40 m (length × width × height), and the overlying land
+was used for agriculture (pepper cultivation), and almost 1.5 acres of agricultural land
+on the hillslope was destroyed. According to the GSI reports, unplanned agricultural
+practices had caused higher infiltration of rainwater, which in turn caused a rise in the PWP
+and resulted in the failure. Landslide 5 (Figure 3) happened in Kallarkutty village in SOI
+toposheet 58G/01 on 9 June 2018, and was a shallow rotational failure triggered by rainfall.
+The failure was relatively small and had a length, width, and height of 8 m, 9 m, and 20 m,
+respectively. The same village had another landslide (Landslide 6, Figure 3) on the same day
+early in the morning (2 AM) in a pepper plantation. A shallow planar landslide happened
+in Cheruthoni on 9 June 2018, with a failure depth of 0.5 m deep and a very small run out
+distance of less than 2.5 m. The area lies in SOI toposheet 58B/16 (Landslide 7, Figure 3).
+Landslide 8 (Figure 3) occurred on 9 June 2018 in the village of Anaviratty (SOI toposheet
+number 58F/04). The failure was a shallow planar rainfall-induced landslide, and the
+overburden had thick vegetation. The depth to the failure was almost 1 m and had a very
+small, less than 5 m, run-out distance. Landslide 9 (Figure 3), chosen in the catchment area
+for the present study, happened on 9 June 2018, and was a shallow planar landslide less
+than 1 m deep to the failure plane. The top soil was characterized by moderate vegetation.
+
+ISPRS Int. J. Geo-Inf. 2023, 12, 105
+
+9 of 31
+
+2.1.2. Strength and Hydraulic Parameters of the Study Area
+The quantification of infiltration, runoff, flow routing, and thereby PWP and FoS
+was based on the strength and hydraulic parameters of the study area. The present study
+derived the strength and hydraulic parameters for the area from a soil texture map. The
+soil texture map of the area was obtained from the NASA Centre for Climate Simulation
+(NCCS) data portal. The Global Hybrid STATSGO/FAO Soil Texture [81,82] is provided by
+the NCCS data portal and is a 16-category soil texture map with 30 s resolution. Although
+the data are provided in 30 s spatial resolution, they were originally remapped data
+from the Food and Agricultural Organization of United Nations (below) 5 min data. The
+STATSGO/FAO data’s soil texture indices were set to the United States Geological Survey
+(USGS)
+index texture values, and further information on the original STATSGO and
+ISPRS Int. J. Geo-Inf. 2023, 12, x FOR PEER REVIEW
+10 original
+of 33
+FAO soil map can be found on the NCCS data portal. Three major designated soil textures
+were identified in the study according to the 30 s STATSGO/FAO soil texture map, and
+Table 1 summarizes the key hydrogeomechanical parameters (hydraulic and strength
+analyses (Sections 2.2 and 4). Figure 4 illustrates the soil texture maps (FAO-STATSGOparameters) with respect to the three major corresponding soil textures of the terrain. A
+derived and DSSSC-derived soil maps) of the catchment area selected for the present
+number of authors have examined the sensitivity of hydraulic and mechanical properties
+study. It can be seen that the FAO-STATSGO database demarcates only three soil types in
+of terrain to compute the FoS and have found that physically based models perform
+the region, while eight soil types are identified in the field-based high-resolution DSSSC
+better when the input parameters, hydraulic and mechanical, are high resolution [83].
+regional map.
+The present study further used a detailed soil texture map from the Department of Soil
+Survey
+Soil Conservation
+(DSSSC),
+Thiruvananthapuram,
+Kerala,
+The
+DSSSC
+Table 1.and
+Hydrogeomechanical
+parameters
+(hydraulic
+and strength parameters)
+of India.
+the study
+area
+for
+isthree
+the state
+nodal
+agency
+for
+the
+conservation
+as
+well
+as
+management
+of
+soil
+resources
+designated soil textures. C’ is cohesion for effective stress, ϕ’ is angle of internal friction, γ is
+unit
+D0 is hydraulic
+diffusivity,provides
+and Ks is saturated
+hydraulic
+conductivity.
+for
+theweight
+stateofofsoil,
+Kerala.
+The department
+scientific
+databases
+to researchers and
+policymakers for the best practices on soil and land management. The detailed soil texture
+Soil Texture
+Loam
+Sandy Clay Loam
+Clay Loam
+map was derived from the local soil texture associations provided by the DSSSC. The
+FAO soil texture index
+6
+7
+9
+high-resolution hydrogeomechanical properties derived from the DSSSC soil texture maps
+C’ (KPa)
+10
+29
+35
+were further
+utilized for deriving high-resolution
+FoS and
+then for sensitivity
+analyses
+ϕ’
+(degree)
+22.5
+20
+20
+(Sections 2.2 and 4). Figure 4 illustrates the soil texture maps (FAO-STATSGO-derived
+and
+−3)
+γ (Nm
+13,000
+15,000
+14,000 It can be
+DSSSC-derived
+soil
+maps) of the catchment
+area selected
+for the present study.
+D0FAO-STATSGO
+(m2s−1)
+0.0000094
+0.000005
+seen that the
+database
+demarcates only0.0000062
+three soil types in the
+region, while
+1s−1)
+Ks (mare
+0.00000453
+0.00000659 DSSSC regional
+0.00000272
+eight soil types
+identified in the
+field-based high-resolution
+map.
+
+Figure4.4. Soil
+Soil texture
+texture map
+map of the study
+study area.
+thethe
+Global
+Hybrid
+Figure
+area. (A)
+(A)Soil
+Soiltexture
+texturebased
+basedonon
+Global
+Hybrid
+STATSGO/FAO
+Soil
+Texture.
+(B)
+Field-based
+soil
+texture
+from
+Department
+of
+Soil
+Survey
+and
+Soiland
+STATSGO/FAO Soil Texture. (B) Field-based soil texture from Department of Soil Survey
+Conservation (DSSSC), Thiruvananthapuram, Kerala.
+Soil Conservation (DSSSC), Thiruvananthapuram, Kerala.
+
+2.1.3. Digital Elevation Model (DEM)
+Terrain parameters, such as elevation, slope, and flow direction, have been extensively used in every landslide study at the catchment scale. The present study derived the
+terrain parameters from the Shuttle Radar Topography Mission (SRTM) Global DEM
+
+ISPRS Int. J. Geo-Inf. 2023, 12, 105
+
+10 of 31
+
+Table 1. Hydrogeomechanical parameters (hydraulic and strength parameters) of the study area for
+three designated soil textures. C’ is cohesion for effective stress, φ’ is angle of internal friction, γ is
+unit weight of soil, D0 is hydraulic diffusivity, and Ks is saturated hydraulic conductivity.
+Soil Texture
+
+Loam
+
+Sandy Clay Loam
+
+Clay Loam
+
+FAO soil texture index
+
+6
+
+7
+
+9
+
+C’ (KPa)
+
+10
+
+29
+
+35
+
+φ’ (degree)
+
+22.5
+
+20
+
+20
+
+γ (Nm−3 )
+
+13,000
+
+15,000
+
+14,000
+
+D0
+
+(m2 s−1 )
+
+0.0000094
+
+0.0000062
+
+0.000005
+
+Ks
+
+(m1 s−1 )
+
+0.00000453
+
+0.00000659
+
+0.00000272
+
+2.1.3. Digital Elevation Model (DEM)
+Terrain parameters, such as elevation, slope, and flow direction, have been extensively
+used in every landslide study at the catchment scale. The present study derived the terrain
+parameters from the Shuttle Radar Topography Mission (SRTM) Global DEM (Digital
+Object Identifier number:/10.5066/F7PR7TFT). The void filled elevation data at 1 arcsecond (30 m) with a worldwide coverage was used for generating a grid-wise distribution
+of the altitude, slope, and flow direction. SRTM, hosted by the Endeavour space shuttle,
+was the first mission to use C-band spaceborne imaging radar and X-band synthetic
+aperture radar (X-SAR) for the global acquisition of elevation. The void-filled DEM used
+for the present study is hosted and distributed by the Earth Resources Observation and
+Science (EROS) Archive. Even though the DEM is tagged as void-filled, there were some
+anomalously low-altitude pixels, often referred to as depressions or pits or sinks, entirely
+surrounded by high-altitude pixels. Because sinks significantly interfere with the routing
+and flow across terrain, they have to be eliminated by filling (increasing the altitude to
+an extent where it allows draining off to the downhill) or breaching (lowering the edges
+of the dead-ends or sinks blocking the flow to allow draining off downhill). The present
+study used a highly efficient utility program called TauDEM, Terrain Analysis Using Digital
+Elevation Models [84] to remove the sinks and generate a hydrologically conditioned DEM
+for seamlessly deriving the terrain parameters for topographic indexing and TRIGRS.
+2.1.4. Precipitation
+Time-varying rainfall intensity is one of the major parameters used as input to compute
+the FoS and PWP in the TRIGRS model. The present study used a carefully curated synthetic
+rainfall history for analyzing the distribution and timing of the landslides in the study area.
+The IMERG and IMD data sets and a number of reports and articles from the State Disaster
+Management Authority (SDMA) and various authors (Section 1) were used for generating
+the time-varying rainfall intensity curve for a nine-day study period. The precipitation
+data sets from the IMD have a spatial resolution of 0.250◦ × 0.250◦ and provide daily
+gridded data over the Indian region [85]. Additionally, the Integrated Multi-satellitE
+Retrievals for GPM (IMERG) daily “final” precipitation (Level 3, version 6) is a global
+◦
+◦
+precipitation data set with high spatial resolution (0.10 × 10 ) that is available half-hourly,
+daily, and monthly [86]. The present study used IMERG’s “final” (~3.5 months after the
+observation) precipitation data sets, which are satellite-gauge products using both forward
+and backward morphing, and the data sets are available from web portals such as the
+Global Precipitation Measurement (GPM) portal (https://gpm.nasa.gov/data/sources,
+accessed on 24 November 2022). Because the routing scheme in TRIGRS is established
+through the mass balance of rainfall, infiltration, and runoff, the reliability of precipitation
+data plays a significant role in computing slope stability.
+The synthetic rainfall history prepared for the present study is shown in Figure 5. The
+curve shows a gradual increase in the daily rainfall from the first to the seventh day and a
+
+ISPRS Int. J. Geo-Inf. 2023, 12, 105
+
+11 of 31
+
+drop for next two days; the highest daily accumulated daily rainfall was 250 mm. Because
+Central Water Commission (CWC) reported heavy rainfall on 9 August 2018, and three
+stations
+in the catchment region received 255 mm, 254 mm, and 211 mm (Peermade, Munnar,
+ISPRS Int. J. Geo-Inf. 2023, 12, x FOR PEER
+REVIEW
+12 of 33
+and Myladumpara in the Idukki district, respectively), the rainfall history taken for this
+study is a possible scenario in the catchment region.
+
+Figure
+Figure 5.
+5. Time-varying
+Time-varying rainfall
+rainfall rate
+rate prepared
+prepared for
+for the
+the present
+present study
+study by
+by considering
+consideringCWC
+CWCand
+andGPMGPMIMERG
+data
+sets.
+IMERG data sets.
+
+Spatial Distribution
+Distribution of
+of Soil
+Soil Thickness
+2.1.5. Spatial
+Soil thickness
+thickness is one
+one of
+of the
+the significant
+significant input
+input parameters
+parameters in TRIGRS
+TRIGRS and plays
+plays aa crucial
+crucial
+Soil
+determining the
+the FoS,
+FoS, PWP,
+PWP, depth to slip surface, and hydrological response of the
+role in determining
+terrain [44,87–89].
+accepted
+in in
+thethe
+model,
+it might
+produce
+terrain
+[44,87–89]. Although
+Althoughaauniform
+uniformsoil
+soildepth
+depthis is
+accepted
+model,
+it might
+proconsiderably
+less-realistic
+FoSs
+and
+lead
+to
+the
+erroneous
+timing
+and
+spatial
+distribution
+duce considerably less-realistic FoSs and lead to the erroneous timing and spatial distriof landslides.
+The present
+studystudy
+obtained
+the depth
+to slip
+at 9 at
+nine
+landslide
+bution
+of landslides.
+The present
+obtained
+the depth
+to surface
+slip surface
+9 nine
+landlocations
+where
+field
+observations
+were
+available
+through
+GSI.
+slide locations where field observations were available through GSI.
+Because the
+thepresent
+presentstudy
+studywas
+wascarried
+carriedout
+out
+larger
+and
+complex
+terrain,
+it was
+Because
+forfor
+larger
+and
+complex
+terrain,
+it was
+rarather
+difficult
+to
+obtain
+(or
+interpolate
+from
+the
+available
+sources)
+the
+spatial
+distribution
+ther difficult to obtain (or interpolate from the available sources) the spatial distribution
+of soil
+soil depth
+depth in
+in high
+high resolution.
+resolution. A
+A number
+number of
+of studies
+studies have
+have been
+been carried
+carried out
+out in
+in different
+different
+of
+parts
+of
+the
+world,
+and
+a
+firm
+linear
+relationship
+between
+soil
+depth
+and
+slope
+has
+been
+parts of the world, and a firm linear relationship between soil depth and slope has been
+established
+[42,44,90,91].
+The
+present
+study
+therefore
+assumed
+a
+linear
+relationship
+between
+established [42,44,90,91]. The present study therefore assumed a linear relationship beslope and
+soiland
+thickness
+over theover
+study
+(Equation
+(1)) and derived
+soil depth
+for
+tween
+slope
+soil thickness
+thearea
+study
+area (Equation
+(1)) andthe
+derived
+the soil
+the
+study
+area
+(Figure
+6).
+depth for the study area (Figure 6).
+D = −0.3437s + 3.5
+(1)
+D = −0.3437s + 3.5
+(1)
+where D is the soil depth at each raster cell with slope s. The slope distribution for the study
+where
+D is
+the soil
+depth
+each raster
+cell30with
+slopeThe
+s. The
+slope
+for the
+area was
+derived
+from
+theat
+pit-filled
+SRTM
+m DEM.
+depth
+D isdistribution
+in meters, and
+the
+study
+area
+was
+derived
+from
+the
+pit-filled
+SRTM
+30
+m
+DEM.
+The
+depth
+D
+is
+in
+meters,
+slope s is in degrees. Waterbodies in the study area were masked as pixels corresponding
+and
+the slope s is
+in degrees.
+in thehave
+studyerroneously
+area were masked
+to waterbodies
+(i.e.,
+have the Waterbodies
+least slope), might
+resultedas
+inpixels
+thickercorresoil.
+sponding to waterbodies (i.e., have the least slope), might have erroneously resulted in
+thicker soil.
+
+ISPRS Int. J. Geo-Inf. 2023, 12, 105
+ISPRS Int. J. Geo-Inf. 2023, 12, x FOR PEER REVIEW
+
+12 of 31
+13 of 33
+
+Figure 6. Spatial distribution of soil thickness and slope in the study area.
+Figure 6. Spatial distribution of soil thickness and slope in the study area.
+
+2.2. Model Description
+2.2.
+The dynamic physically based slope stability model
+model used
+used in
+in the
+the present
+present study,
+study, TranTranRainfall Infiltration
+Infiltration and
+and Grid-based
+Grid-based Regional
+Regional Slope-Stability
+Slope-Stability Model (TRIGRS) is aa
+sient Rainfall
+commonly used
+usedslope
+slopestability
+stabilitymodel
+modelfor
+forcomputing
+computing
+the
+timing
+and
+distribution
+of raincommonly
+the
+timing
+and
+distribution
+of rainfallinduced
+shallow
+landslides
+[54,63,64,92,93].
+The TRIGRS
+model model
+consistsconsists
+of a runoff
+fall-induced
+shallow
+landslides
+[54,63,64,92,93].
+The TRIGRS
+of arouting
+runoff
+component
+and a slope
+component.
+The former
+the infiltration
+and subrouting component
+andstability
+a slope stability
+component.
+Thecomputes
+former computes
+the infiltration
+surface
+flow of storm
+andwater,
+the latter
+the models
+grid-based
+stability
+overstability
+an area
+and subsurface
+flow water,
+of storm
+andmodels
+the latter
+the slope
+grid-based
+slope
+of
+interest.
+Many
+studiesMany
+have been
+carried
+globally
+with varying
+over
+an area
+of interest.
+studies
+have out
+been
+carriedfor
+outdifferent
+globallyterrain
+for different
+terrain
+topographic
+settings,
+and
+a
+number
+of
+researchers
+have
+shown
+that
+the
+open-source
+with varying topographic settings, and a number of researchers have shown that themodel
+openis
+capable
+of modeling
+shallow landslides
+over
+a large region.
+A brief
+source
+model
+is capablerainfall-induced
+of modeling rainfall-induced
+shallow
+landslides
+over a large
+redescription
+infiltration,ofrunoff,
+flow routing,
+and slope
+stability
+models
+is given
+below.is
+gion. A briefofdescription
+infiltration,
+runoff, flow
+routing,
+and slope
+stability
+models
+given below.
+2.2.1. Modeling Infiltration, Runoff, and Flow Routing in TRIGRS
+the study
+area isRunoff,
+in a low-latitude
+area andinexperiences
+a warm, temperate
+2.2.1.Since
+Modeling
+Infiltration,
+and Flow Routing
+TRIGRS
+climate,
+it
+can
+be
+safely
+assumed
+that
+rainwater
+is
+the
+only
+form
+of
+precipitation
+in the
+Since the study area is in a low-latitude area and experiences a warm,
+temperate
+clistudy area. It is hypothesized in the TRIGRS flow routing model that the rainwater from
+mate, it can be safely assumed that rainwater is the only form of precipitation in the study
+the upslope cells flows downslope, based on the infiltrability of the cells. The infiltrability
+area. It is hypothesized in the TRIGRS flow routing model that the rainwater from the
+or infiltration capacity is a function of the saturated hydraulic conductivity of the medium.
+upslope cells flows downslope, based on the infiltrability of the cells. The infiltrability or
+Additionally, runoff from a particular cell occurs only when the sum of the direct precipinfiltration capacity is a function of the saturated hydraulic conductivity of the medium.
+itation received on a cell and the accumulated runoff from the upslope cells exceeds the
+Additionally, runoff from a particular cell occurs only when the sum of the direct precipinfiltrability of the cell.
+itation received on a cell and the accumulated runoff from the upslope cells exceeds the
+The model computes infiltration (I) at every cell as a sum of precipitation (P) and
+infiltrability of the cell.
+runoff (Ru ) from cells with higher elevation with an assumption that infiltration cannot
+The model computes infiltration (I) at every cell as a sum of precipitation (P) and
+exceed saturated hydraulic conductivity (Ks ).
+runoff (Ru) from cells with higher elevation with an assumption that infiltration cannot
+exceed saturated hydraulic
+(Ks).(I − Ks ) is negative]
+I = Pconductivity
++ Ru [Provided
+(2)
+
+I = P + Ru [Provided (I − Ks) is negative]
+(2)
+Furthermore, whenever the sum of P and Ru exceeds Ks , the excess quantity, P + Ru − Ks ,
+Furthermore,
+whenever
+the sum
+of P anddownslope
+Ru exceedscells,
+Ks, the
+excess
+quantity,
+P + Ruto−
+is channeled
+as runoff
+and routed
+to adjacent
+and
+the runoff
+diverted
+Ks, is
+channeled
+as runoffcells
+and(R
+routed
+to
+adjacent
+downslope
+cells,
+and
+the
+runoff
+diverted
+the
+adjacent
+downslope
+)
+is
+calculated
+as,
+d
+to the adjacent downslope cells (Rd) is calculated as,
+Rd = P + Ru − Ks [only when (P + Ru ) > Ks ]
+(3)
+Rd = P + Ru − Ks [only when (P + Ru) > Ks]
+(3)
+
+ISPRS Int. J. Geo-Inf. 2023, 12, 105
+
+13 of 31
+
+Additionally, the input water is forced to run off from every cell where the ground
+water table reaches the surface (implying saturated grids). The saturated cells exfiltrate
+water received, either in the form of rain or run off from upslope cells, and is modeled to
+further run off to the downslope cells.
+The entire process of flow routing after the computation of run off for each cell is
+based on the directions of the nearest and steepest confining downslope cell. D8 flow
+directions [94,95] were used in the present study for flow routing cell-by-cell in the mass
+balance calculations, and the D8 numbering scheme was set up according to the TopoIndex
+(Section 2.3.1). D8 flow directions were derived in TauDEM, which output gridded cells
+with a numbering scheme where 1 to 8 represent east, north east, north, north west, west,
+south west, south, and south east, respectively. Furthermore, adequate measures were
+taken to avoid any possible conflicts along the grid cells adjacent to the edges of the
+hydrologically conditioned DEM and along the flat areas in the basin [96].
+2.2.2. Modeling Slope Stability
+The slope stability component in the model computes the grid-based slope stability
+of each cell using an infinite-slope stability analysis. A parameter called FoS, which is
+the ratio of resisting basal Coulomb friction to gravitationally induced downslope basal
+driving stress, was employed to determine the failure of infinite slope as result of rainfall.
+Equation (4) governs the FoS for each grid for the selected time step.
+FoS =
+
+tanφ0
+c0 − ψ( Z, t)γw tanφ0
++
+tanα
+γs dlb sinαcosα
+
+(4)
+
+where φ0 is the effective angle of internal friction, c0 is the effective cohesion, ψ is the
+pressure head as a function of depth Z and time t, dlb is the depth of the lower impervious
+boundary, and γw and γs are the unit weights of water and soil, respectively. The model was
+modified to include a layer of an unsaturated zone. The modified equation for obtaining
+the FoS in this zone is,
+FoS =
+
+c0 − ψ( Z, t)γw χtanφ0
+tanφ0
++
+tanα
+γs dlb sinαcosα
+
+(5)
+
+θ − θr
+θ s − θr
+
+(6)
+
+where,
+χ=
+
+where the χ approximation was given by Vanapalli and Fredlund [97] and is known as
+the effective stress parameter. θ is the soil moisture content in the unsaturated soil zone,
+θ r is the residual soil water content of the soil, and θ s is the saturated soil water content.
+Figure 7 (modified from [54]) is a schematic cross-section of the hillslope where the TRIGRS
+model was applied. The infinite slope or the particular cell is considered stable when FoS is
+above 1; when the FoS falls below 1, the slope fails. Thus, the depth Z, where FoS first falls
+below 1, is considered the depth of landslide initiation [92].
+The model considers the catchment region as digital terrain, which can be divided into
+zones, based on the soil texture, and three-dimensional cell grids. The user or modeler can
+introduce more control by feeding each zone topographic parameters (elevation and slope),
+hydraulic properties (flow direction, diffusivity, infiltration rate, depth to ground water,
+saturated water content, residual water content, saturated hydraulic conductivity, and
+inverse of the height of capillary rise), and strength parameters (cohesion, friction angle,
+and weight of the soil). Furthermore, control can be achieved by providing elevation, slope,
+flow direction, depth to ground water, and depth to bedrock grid-wise. The TRIGRS version
+used for the present study did not have the versatility to provide strength and hydraulic
+parameters grid-wise. The present study employed version 2.1 [54] of TRIGRS, which is
+based on version 1.0 [64], but with fewer restrictive hypotheses. The model is capable of
+performing on saturated as well as unsaturated media and is capable of capturing unstable
+
+ISPRS Int. J. Geo-Inf. 2023, 12, 105
+
+14 of 31
+
+ISPRS Int. J. Geo-Inf. 2023, 12, x FOR PEER
+15 of 33
+cells, REVIEW
+which are effectively landslide locations, in the study area by considering precipitation
+
+and the corresponding changes in the hydrogeomechanical parameters.
+
+Figure 7. Schematic cross-section showing the shallow ground water condition in the soil. duz is the
+Figure
+7. Schematic
+cross-section
+the
+ground
+condition
+in the
+soil.the
+duz
+is the
+unsaturated
+zone above
+the watershowing
+table. dwt
+is shallow
+the depth
+to the water
+ground
+water table
+from
+surface.
+unsaturated
+zone
+above
+the
+water
+table.
+d
+is
+the
+depth
+to
+the
+ground
+water
+table
+from
+the
+surface.
+wt
+dlb is the depth to the impervious lower boundary δ of the slope.
+dlb is the depth to the impervious lower boundary δ of the slope.
+
+The model considers the catchment region as digital terrain, which can be divided
+The execution
+time
+for TRIGRS
+has an exponential
+negative
+with
+into zones,
+based on
+therequired
+soil texture,
+and three-dimensional
+cell grids.
+Therelationship
+user or modeler
+the number of pixels, grids, and cells in the input data sets. A larger number of pixels can
+can introduce more control by feeding each zone topographic parameters (elevation and
+be expected whenever the model is executed with high-resolution input data sets or over a
+slope), hydraulic properties (flow direction, diffusivity, infiltration rate, depth to ground
+large area. Because the present study was carried out for a relatively larger catchment area
+water, saturated water content, residual water content, saturated hydraulic conductivity,
+with a higher number of grids in the input data sets, multiple model executions became
+and inverse of the height of capillary rise), and strength parameters (cohesion, friction
+time consuming. In order to overcome this issue, the study employed TRIGRS MPI [65] for
+angle, and weight of the soil). Furthermore, control can be achieved by providing elevathe parallel implementation of TRIGRS by utilizing the maximum computational capacity.
+tion, slope, flow direction, depth to ground water, and depth to bedrock grid-wise. The
+The TRIGRS MPI significantly reduced the time consumed for each run, provided more
+TRIGRS version used for the present study did not have the versatility to provide strength
+flexibility and freedom while changing the input parameter sets for multiple executions of
+and hydraulic parameters grid-wise. The present study employed version 2.1 [54] of
+the model.
+TRIGRS, which is based on version 1.0 [64], but with fewer restrictive hypotheses. The
+model is capable of performing on saturated as well as unsaturated media and is capable
+of capturing unstable cells, which are effectively landslide locations, in the study area by
+
+ISPRS Int. J. Geo-Inf. 2023, 12, 105
+
+15 of 31
+
+2.3. Application of the Model
+The present study assessed the distribution of slope failures in the catchment region at
+1913 landslide sites along with computing the fall in FoS and rise in PWP at 9 landslide sites
+in the study area with respect to a 9-day rainfall period. The open-source model, TRIGRS, is
+capable of considering topographic parameters (elevation and slope), hydraulic properties
+(flow direction, permeability, diffusivity, conductivity, infiltration rate, and depth to ground
+water), and strength parameters (cohesion, friction angle, and weight of the soil) while
+computing the FoS.
+A brief description of the significant steps involved in this work is described in the
+following sections.
+2.3.1. Topographic Indexing for Flow Routing
+The execution of the model TRIGRS is carried out through two individual programs:
+TopoIndex and the main TRIGRS program. The former, as the name suggests, is used for
+topographic indexing; the latter, the main program, is used for flow routing and runoff
+calculations. TopoIndex prepares a list and a grid of downslope receptor cells (TIdsneiList
+and TIdscelGrid), a list of index numbers corresponding to each cell number (TIcelindxList),
+a list of downslope cells for which nonzero weighting factors have been computed (TIdscelList), and a list of weighting factors for downslope receptor cells (TIwfactorList). The
+outputs of the TopoIndex are generated in ASCII, and text formats and each output’s name
+start with what is given above in the brackets.
+A hydrologically conditioned DEM and flow direction are the input files required for
+generating the essentials data sets for TRIGRS. Section 2.1.3 briefly describes the hydrological conditioning of the DEM. The present study used the D8 algorithm to derive the flow
+direction through TauDEM (Section 2.1.3). Although TopoIndex uses the D8 flow direction,
+the numeric coding is different than that of the TauDEM-derived flow direction or ESRI
+flow direction. Figure 8 shows the designated codes in both the flow direction along with
+the geographical direction. Although the flow direction for TopoIndex can be generated
+ISPRS Int. J. Geo-Inf. 2023, 12, x FOR PEER
+REVIEW
+17 of D8
+33
+through
+with D8 and D-infinity methods, the present study used the TauDEM-derived
+flow direction scheme for generating the outputs.
+
+(North)
+
+(North East)
+
+32
+
+64
+
+128
+
+1
+
+2
+
+3
+
+16
+
+1
+
+4
+
+6
+
+(East)
+
+(North West)
+
+(West)
+
+(North East)
+
+(East)
+
+(North)
+
+(West)
+
+(North West)
+
+8
+
+4
+
+2
+
+7
+
+8
+
+9
+
+(South West)
+
+(South)
+
+(South East)
+
+(South West)
+
+(South)
+
+(South East)
+
+Figure 8. Comparison of D8 ESRI flow direction and D8 TopoIndex flow direction.
+Figure 8. Comparison of D8 ESRI flow direction and D8 TopoIndex flow direction.
+
+Figure
+ofof
+thethe
+study,
+which
+depicts
+thethe
+derivation
+of the
+Figure 99shows
+showsaaschematic
+schematicdiagram
+diagram
+study,
+which
+depicts
+derivation
+of
+input
+data
+sets,
+application
+of
+the
+model,
+and
+validation
+of
+the
+output
+(grid-based
+FoS)
+the input data sets, application of the model, and validation of the output (grid-based
+from
+the hydrogeomechanical
+properties
+through
+FAO-STATSGO
+FoS) from
+the hydrogeomechanical
+properties
+through
+FAO-STATSGOand
+andhigh-resolution
+high-resolution
+hydrogeomechanical properties through the field-based DSSSC against the landslide inventory. The landslide inventory is based on the landslides that occurred in the catchment
+region during the 2008 monsoon season.
+
+8
+
+4
+
+2
+
+7
+
+8
+
+9
+
+(South West)
+
+(South)
+
+(South East)
+
+(South West)
+
+(South)
+
+(South East)
+
+Figure 8. Comparison of D8 ESRI flow direction and D8 TopoIndex flow direction.
+ISPRS Int. J. Geo-Inf. 2023, 12, 105
+
+16 of 31
+
+Figure 9 shows a schematic diagram of the study, which depicts the derivation of the
+input data sets, application of the model, and validation of the output (grid-based FoS)
+from the hydrogeomechanical properties through FAO-STATSGO and high-resolution
+hydrogeomechanical
+hydrogeomechanical properties
+properties through
+through the
+the field-based
+field-based DSSSC
+DSSSC against
+against the
+the landslide
+landslide ininventory.
+The
+landslide
+inventory
+is
+based
+on
+the
+landslides
+that
+occurred
+in
+the
+ventory. The landslide inventory is based on the landslides that occurred in thecatchment
+catchment
+region
+regionduring
+duringthe
+the2008
+2008monsoon
+monsoonseason.
+season.
+
+Figure9.9. Schematic
+Schematic diagram
+diagram of
+of the
+the methodology
+methodology adopted
+adopted in
+in the
+the present
+present study.
+study. The
+Thederivation
+derivation of
+of
+Figure
+the
+input
+data
+sets,
+application
+of
+the
+model,
+and
+validation
+of
+the
+output
+(grid-based
+FoS)
+from
+the input data sets, application of the model, and validation of the output (grid-based FoS) from
+hydrogeomechanicalproperties
+properties through
+through FAO-STATSGO
+FAO-STATSGOand
+andhigh-resolution
+high-resolutionhydrogeomechanical
+hydrogeomechanical
+hydrogeomechanical
+properties through field-based DSSSC against the landslide inventory are graphically represented
+properties through field-based DSSSC against the landslide inventory are graphically represented in
+in the diagram.
+the diagram.
+
+2.3.2. TRIGRS Initialization for Slope Stability
+The present study divided the entire study area into three zones based on the FAO soil
+texture and eight zones based on the regional soil texture map (Figure 4). The hydrological
+and strength parameters were based on both soil texture maps. The hydrological and
+strength parameters, such as cohesion (c0 ), internal friction (φ0 ), unit weight of soil (γ),
+hydraulic diffusivity (D0 ), saturated hydraulic conductivity (Ks ), and saturated and residual
+water content, were derived solely based on the soil texture map. The values of these
+parameters were obtained from the literature based on the soil type. The present study
+divided the entire catchment region into 30 m × 30 m cells, and the FoS was computed
+for each grid with a time step of 1 day for a total period of nine days. An FoS value of 1
+was considered as the threshold for slope failure in the catchment region. Thereby, a value
+greater than 1 was taken as a measure to classify the pixel as stable (non-landslide) and
+a value less than 1 was taken as a measure to classify the pixel as unstable (landslide) in
+the catchment region. The computed FoS for every pixel in the study area for the entire
+nine-day period was taken as an indicator of the initiation of slope failure.
+3. Results
+As discussed in Section 2.1.1, the present study examined the landslides in a landslideprone catchment region in Western Ghats. The shallow landslides were triggered by
+widespread heavy and incessant rainfall that occurred in the first weeks of June 2018.
+Details of the hydrogeomechanical parameters and terrain parameters used for computing
+the FoS and PWP in the physically based model are provided in Sections 2.1.2 and 2.1.3.
+The rainfall rate fed into the TRIGRS model is described Section 2.1.4. The distribution of
+the landslide pixels and the changes as the rainfall continued are described in Section 3.2,
+
+ISPRS Int. J. Geo-Inf. 2023, 12, 105
+
+17 of 31
+
+and the timing of the triggering of the nine landslides as a result of the rainfall in the study
+are is described in Sections 3.3 and 3.4.
+3.1. Impact of Varying the Number of Soil Zones
+Even though the number of soil zones in the studied catchment varied for the two runs,
+being three and eight, the properties were still based on soil texture. It can be seen from
+Figure 10 that the true identifications of the landslide events in both runs were comparable.
+The model in both the cases could identify 1524 and 1323 landslides of the 1913 landslides.
+Additionally, a true positive rate (TPR) of 68% and 60% was obtained with a nine-day
+rainfall period for the two derived soil texture data sets, respectively. A false positive rate
+(FPR) of 36% and 31% was also seen, respectively. The total accuracy was 68%. Although
+previous studies [83] showed that the hydrogeomechanical parameters have an impact
+on the simulations of FoS and PWP, it was seen here that the properties just based on soil
+texture did not impact the model result. It was also suggested that these properties may
+ISPRS Int. J. Geo-Inf. 2023, 12, x FOR PEER REVIEW
+19 of 33
+need to be derived from the other sources such as Earth Observation (EO) data sets, which
+can result in a better simulation of the PWP [98].
+
+Figure 10. Distribution
+Distribution of false positives and false negatives (A) when hydraulic properties were
+derived
+from
+FAOsoil
+soiltexture
+textureand
+and(B)
+(B)when
+whenhydraulic
+hydraulicproperties
+propertieswere
+were
+derived
+from
+soil
+map
+derived from FAO
+derived
+from
+thethe
+soil
+map
+of
+of
+the
+Soil
+Survey
+&
+Soil
+Conservation
+Directorate.
+the Soil Survey & Soil Conservation Directorate.
+
+3.2. Change in FoS and PWP in the Catchment Region
+In the study area, the FoS corresponding to majority of the grids showed a significant
+decrease during the nine-day rainfall period. Furthermore, over time, a higher number of
+grids started
+thethe
+threshold
+value
+of one,
+and and
+the corresponding
+time
+startedshowing
+showingan
+anFoS
+FoSbelow
+below
+threshold
+value
+of one,
+the corresponding
+was
+taken
+as
+the
+initiation
+of
+the
+landslide.
+Along
+with
+the
+FoS,
+the
+PWP
+was
+computed
+for
+time was taken as the initiation of the landslide. Along with the FoS, the PWP was comeach
+grid
+to
+further
+illustrate
+the
+interconnection
+among
+the
+FoS,
+landslide
+initialization,
+puted for each grid to further illustrate the interconnection among the FoS, landslide iniand rainfalland
+history.
+Figure
+11 shows
+in the
+rise
+inand
+the rise
+PWP
+study
+tialization,
+rainfall
+history.
+Figurethe
+11 fall
+shows
+theFoS
+fall and
+in the
+FoS
+infor
+thethe
+PWP
+for
+areastudy
+for thearea
+period
+days.
+is depicted
+figure that
+thefigure
+FoS was
+for
+the
+for of
+thenine
+period
+ofItnine
+days. Itinisthe
+depicted
+in the
+thatdecreasing
+the FoS was
+the
+majority
+of
+the
+pixels,
+and
+new
+areas
+could
+be
+demarcated
+as
+landslide
+pixels
+as
+time
+decreasing for the majority of the pixels, and new areas could be demarcated as landslide
+progressed.
+FoS was calculated
+forcalculated
+each pixelfor
+ateach
+the end
+24 h
+rainfall
+for
+pixels as timeThe
+progressed.
+The FoS was
+pixelofatathe
+end
+of a 24period
+h rainfall
+nine
+days
+in
+Figure
+11
+(left).
+The
+same
+was
+repeated
+for
+the
+PWP
+and
+is
+plotted
+in
+Figure
+11
+period for nine days in Figure 11 (left). The same was repeated for the PWP and is plotted
+(right).
+It
+is
+clear
+from
+the
+FoS–PWP
+through
+the
+rainfall
+rate
+plot
+that
+a
+number
+of
+pixels
+in Figure 11 (right). It is clear from the FoS–PWP through the rainfall rate plot that a numfell below
+thefell
+threshold
+FoSthreshold
+value and
+turned
+areas.
+ber
+of pixels
+below the
+FoS
+valueinto
+andunstable
+turned into
+unstable areas.
+Furthermore, Figure 11 shows the inverse relationship between the FoS and PWP in
+the study area. It can be observed from the figure that when PWP increased as rainfall
+continued, the FoS significantly decreased. The blue region in the plots represents the relatively stable areas (lower PWP and higher FoS), and the red region represents relatively
+lesser stable areas (higher PWP and lower FoS). For better understanding, the usage of
+model with regard to landslide initiation timing, the nine landslides were chosen for the
+
+ISPRS Int. J. Geo-Inf. 2023, 12, x FOR PEER REVIEW
+ISPRS Int. J. Geo-Inf. 2023, 12, 105
+
+20 of 33
+18 of 31
+
+Figure
+Figure11.
+11. (Left)
+(Left)Decrease
+Decreaseininfactor
+factorofofsafety
+safety(FoS)
+(FoS)ininthe
+thecatchment
+catchmentregion
+regionfor
+forthe
+the9-day
+9-dayrainfall
+rainfall
+period.
+period.Day
+Day11(top
+(topleft)
+left)isisthe
+theplot
+plotofofFoS
+FoSatateach
+eachpixel
+pixelatatthe
+theend
+endofofaa24
+24hhrainfall
+rainfallperiod,
+period,and
+andday
+day99
+isisthe
+theFoS
+FoSat
+ateach
+eachpixel
+pixelat
+at the
+the end
+end of
+of aa 9-day
+9-day rainfall
+rainfall period.
+period. Red
+Redregion
+regionindicates
+indicateslower-FoS
+lower-FoSand
+and
+unstable areas, and blue region indicates higher-FoS and stable area. (Right): Rise in pore water
+unstable areas, and blue region indicates higher-FoS and stable area. (Right): Rise in pore water
+pressure (PWP) in the catchment region for the 9-day rainfall period. Day 1 (top left) is the plot of
+pressure (PWP) in the catchment region for the 9-day rainfall period. Day 1 (top left) is the plot of
+PWP at each pixel at the end of a 24 h rainfall period, and day 9 is the PWP at each pixel at the end
+PWP
+at each
+pixelperiod.
+at the end
+a 24 h indicates
+rainfall period,
+day
+9 is the PWP
+at eachand
+pixel
+at the
+end
+of
+a 9-day
+rainfall
+Redofregion
+higherand
+PWP
+(relatively
+unstable),
+blue
+region
+of
+a
+9-day
+rainfall
+period.
+Red
+region
+indicates
+higher
+PWP
+(relatively
+unstable),
+and
+blue
+region
+indicates lower PWP (relatively stable). The nine selected landslides are located in the black rectanindicates
+lowerinPWP
+The
+ninekeys
+selected
+landslides
+located
+in the black
+rectangle
+gle
+(not shown
+this (relatively
+plot). Notestable).
+that the
+color
+are reversed
+forare
+easy
+demarcation
+of relatively
+(not shown
+thisareas.
+plot). Note that the color keys are reversed for easy demarcation of relatively
+unstable
+(i.e.,in
+red)
+unstable (i.e., red) areas.
+
+The plot in Figure 8 is a detailed illustration of the FoS–PWP in and around the nine
+Furthermore,
+Figure
+11study
+showsarea.
+the inverse
+relationship
+thethe
+FoS
+andand
+PWP
+in
+landslide
+sites chosen
+in the
+As discussed
+above,between
+the rise in
+PWP
+fall
+the
+study
+area.
+It
+can
+be
+observed
+from
+the
+figure
+that
+when
+PWP
+increased
+as
+rainfall
+in the FoS were computed and plotted for the nine-day rainfall period. The black dots
+continued,
+FoS significantly
+decreased.chosen
+The blue
+region
+in area.
+the plots
+the
+represent
+thethe
+locations
+of the nine landslides
+for the
+study
+It canrepresents
+be seen from
+relatively
+stable
+areas
+(lower
+PWP
+and
+higher
+FoS),
+and
+the
+red
+region
+represents
+relatively
+Figure 11 and Figure 12 that there are false positive regions, where the FoS drops below
+lesser
+stable
+areas
+PWP and lower
+FoS). Forthat
+better
+understanding,
+usage of
+one.
+This
+shows
+that(higher
+the geohydrological
+parameters
+were
+governing thethe
+hydrologimodel
+with
+regard
+to
+landslide
+initiation
+timing,
+the
+nine
+landslides
+were
+chosen
+forsoil
+the
+cal simulation needed to be further improved so that the partition of water among the
+case
+study.
+The
+nine
+landslides
+chosen
+for
+the
+study
+are
+located
+in
+the
+black
+rectangle
+in
+layers could be better simulated. The χ approximation from Equation (6), utilized in Equathe
+plots.
+tion (5) of the FoS, is based on the SHPs, saturated water content, and residual water conFigure
+is aproperties
+detailed illustration
+ofthe
+the PWP
+FoS–PWP
+in and
+around
+the nine
+tent. ItThe
+canplot
+be in
+seen
+that 8the
+impact both
+and FoS.
+These
+parameters
+landslide
+sites chosenand
+in the
+study area.
+Assoil
+discussed
+in the PWP
+and
+fall
+were
+literature-based
+dependent
+on the
+texture.above,
+One ofthe
+the rise
+limitations
+is that
+these
+in the FoS were computed and plotted for the nine-day rainfall period. The black dots
+properties were not available at a 30 m resolution. Again, this shows that these properties
+represent the locations of the nine landslides chosen for the study area. It can be seen
+may have to be identified at finer resolution through satellite data that have higher spatial
+from Figures 11 and 12 that there are false positive regions, where the FoS drops below
+coverage compared with the field analysis, which may be not possible in remote and inone. This shows that the geohydrological parameters that were governing the hydrological
+accessible areas. However, the landslide events were identified, which can still act as a
+simulation needed to be further improved so that the partition of water among the soil
+warning for susceptible zones.
+layers could be better simulated. The χ approximation from Equation (6), utilized in
+
+ISPRS Int. J. Geo-Inf. 2023, 12, 105
+
+19 of 31
+
+Equation (5) of the FoS, is based on the SHPs, saturated water content, and residual water
+content. It can be seen that the properties impact both the PWP and FoS. These parameters
+were literature-based and dependent on the soil texture. One of the limitations is that
+these properties were not available at a 30 m resolution. Again, this shows that these
+properties may have to be identified at finer resolution through satellite data that have
+ISPRS Int. J. Geo-Inf. 2023, 12, x FOR PEER
+REVIEW
+21 of 33
+higher
+spatial coverage compared with the field analysis, which may be not possible
+in
+remote and inaccessible areas. However, the landslide events were identified, which can
+still act as a warning for susceptible zones.
+
+Figure
+Figure12.
+12. (Left)
+(Left)Fall
+Fallin
+infactor
+factorof
+ofsafety
+safety(FoS)
+(FoS)in
+inand
+andaround
+aroundthe
+thenine
+ninelandslides
+landslidesfor
+forthe
+thenine
+ninedays
+days
+rainfall period. Day 1 (top left) is the plot of FoS at each pixel at the end of a 24-h rainfall period and
+rainfall period. Day 1 (top left) is the plot of FoS at each pixel at the end of a 24-h rainfall period and
+Day 9 is the FoS at each pixel at the end of a 9-day rainfall period. Red region indicates lower FoS,
+Day 9 is the FoS at each pixel at the end of a 9-day rainfall period. Red region indicates lower FoS,
+unstable, areas and blue region indicates higher FoS, stable area. (Right): Rise in Pore Water Presunstable,
+areas
+andaround
+blue region
+indicates
+higherfor
+FoS,
+stable
+in Pore
+sure
+(PWP)
+in and
+the nine
+landslides
+the
+ninearea.
+days(Right):
+rainfall Rise
+period.
+DayWater
+1 (topPressure
+left) is
+(PWP)
+in
+and
+around
+the
+nine
+landslides
+for
+the
+nine
+days
+rainfall
+period.
+Day
+1
+(top
+left)
+is the
+plot
+the plot of PWP at each pixel at the end of a 24-h rainfall period and Day 9 is the PWP at each
+pixel
+ofthe
+PWP
+each
+pixelrainfall
+at the end
+of a Red
+24-h region
+rainfallindicates
+period and
+DayPWP
+9 is the
+PWP at each
+pixel at
+theblue
+end
+at
+endatof
+a 9-day
+period.
+higher
+(relatively
+unstable),
+and
+of a 9-day
+rainfall
+period.
+region stable).
+indicates
+higher
+(relatively
+region
+region
+indicates
+lower
+PWPRed
+(relatively
+The
+blackPWP
+dots indicate
+theunstable),
+landslide and
+sites.blue
+Note
+that
+the
+color keys
+are
+reversed
+for easy
+demarcation
+relatively
+(~red)sites.
+areas.
+indicates
+lower
+PWP
+(relatively
+stable).
+The blackof
+dots
+indicateunstable
+the landslide
+Note that the color
+keys are reversed for easy demarcation of relatively unstable (~red) areas.
+
+3.3. Fall in FoS
+Figure 11 and Figure 12 show the distribution of the landslides in the catchment region and their changes as the rainfall progresses. The 8 landslides were triggered on 9
+June 2018 and one landslide was triggered on 11 June 2018. The rainfall event used for
+computing the eight landslides which were triggered on 9 June 2018 started on 3 June and
+
+ISPRS Int. J. Geo-Inf. 2023, 12, x FOR PEER REVIEW
+
+22 of 33
+
+ISPRS Int. J. Geo-Inf. 2023, 12, 105
+
+20 of 31
+
+Figure 13 shows the gradual fall in FoS at nine landslide sites with respect to the nine
+days rainfall event. A vertical dotted line is added to each plot for easy representation of
+3.3.
+in FoS the landslide occurred (9 June in the case of Landslide 1, 3, 4, 5, 6, 7, and 8
+day Fall
+on which
+Figures
+11 and
+distribution
+the
+landslides
+in thethe
+catchment
+and
+and 11
+June 2018
+in12
+theshow
+case the
+of Landslide
+2).ofAs
+discussed
+above,
+present region
+study contheir
+changes
+the rainfall
+progresses.
+The
+8 landslides
+wereFoS
+triggered
+on 91 June
+2018
+sidered
+1 as a as
+threshold
+value
+for FoS and
+whenever
+a pixel’s
+fall below
+is considand
+triggered
+on 11 June
+2018.
+The rainfall
+event
+used for
+computing
+eredone
+as alandslide
+landslide was
+and the
+corresponding
+time
+is recorded
+as the
+landslide
+initiation
+time.
+the eight
+landslides
+which
+were Landslide
+triggered on
+9 June 2018
+started4on
+3 June and
+ended
+Landslide
+1 (Kallar
+Vattiyar),
+3 (Eetticity),
+Landslide
+(Kallimali),
+Landslide
+on
+11 June 2018.
+Seventh day
+of the rainfall
+event (9 June)
+was the day
+on which
+eight
+5 (Kallarkutty
+I), Landslide
+6 (Kallarkutty
+II), Landslide
+7 (Cheruthoni),
+Landslide
+8 (Anavlandslides
+happened.
+Similarly,
+a
+rainfall
+event
+started
+on
+5
+June
+and
+ended
+on
+11
+June
+iratty) and Landslide 9 (Ambazhachal) were triggered on 9 June 2018. The FoS computed
+at
+2018
+was
+used
+for
+computing
+the
+FoS
+at
+one
+landslide
+which
+was
+triggered
+on
+11
+June
+these landslide locations on 9 June are 1.15, 6.87, 0.90, 0.89, 1.08, 1.08, 1.11, and 1.22 2018.
+(FoS
+Figure 13 shows
+the line
+gradual
+fall in 13).
+FoS Additionally,
+at nine landslide
+sites with
+respect towas
+the nine
+corresponding
+to dotted
+on Figure
+Landslide
+2 (Anachal),
+trigdays
+event.
+A the
+vertical
+dotted lineasisper
+added
+to each
+for easy
+of
+geredrainfall
+on 11 June
+and
+FoS computed
+TRIGRS
+onplot
+the same
+dayrepresentation
+is 0.93 (FoS corday
+on whichtothe
+landslide
+JuneAccording
+in the caseto
+of the
+Landslide
+1, 3, 4, 5, 6,
+7, and13,
+8 and
+responding
+dotted
+line occurred
+on Figure(913).
+FoS computed
+Figure
+the
+11
+June could
+2018 inindicate
+the casethe
+of Landslide
+2). As
+above,sites
+the present
+study
+considered
+model
+slope failures
+at discussed
+three landslide
+out of nine
+chosen
+land1slides
+as a threshold
+value
+for
+FoS
+and
+whenever
+a
+pixel’s
+FoS
+fall
+below
+1
+is
+considered
+a
+in the study area. Additionally, as the time progresses it can be observed thatas
+the
+landslide
+and
+the
+corresponding
+time
+is
+recorded
+as
+the
+landslide
+initiation
+time.
+model rightly shows the eight out of 9 landslides failures in the study area.
+
+Figure 13. Fall in FoS with respect to nine-day rainfall period at the landslide sites. The vertical
+Figure 13. Fall in FoS with respect to nine-day rainfall period at the landslide sites. The vertical
+dotted
+dotted line
+line shows
+shows the
+the day
+day on
+on which
+which the
+the landslide
+landslide occurred.
+occurred.
+
+Landslide 1 (Kallar Vattiyar), Landslide 3 (Eetticity), Landslide 4 (Kallimali), Landslide 5
+3.4. Rise in PWP
+(Kallarkutty I), Landslide 6 (Kallarkutty II), Landslide 7 (Cheruthoni), Landslide 8 (Anaviratty)
+As part of 9the
+study, the PWP
+calculated
+the2018.
+catchment
+region.
+Figure 14
+and Landslide
+(Ambazhachal)
+werewas
+triggered
+on 9for
+June
+The FoS
+computed
+at
+plots
+the
+PWP
+extracted
+at
+the
+nine
+landslide
+sites
+in
+the
+study
+area
+against
+the
+these landslide locations on 9 June are 1.15, 6.87, 0.90, 0.89, 1.08, 1.08, 1.11, and time-var1.22 (FoS
+ying rainfall rate.
+plotline
+shows
+near linear
+in the PWPLandslide
+with respect
+to the rainfall.
+corresponding
+to The
+dotted
+on aFigure
+13). rise
+Additionally,
+2 (Anachal),
+was
+Furthermore,
+the
+PWP
+and
+FoS
+showed
+an
+inverse
+relationship
+at
+the
+nine
+landslide
+sites
+triggered on 11 June and the FoS computed as per TRIGRS on the same day is 0.93 (FoS
+(Figure 13 and to
+Figure
+14).
+Ason
+in Figure
+the case13).
+of rainfall-induced
+landslides
+anywhere
+corresponding
+dotted
+line
+According to theshallow
+FoS computed
+Figure
+13, the
+else, ancould
+increase
+in thethe
+PWP
+indeed
+reduced
+thelandslide
+FoS at the
+nine
+sites inlandslides
+the study
+model
+indicate
+slope
+failures
+at three
+sites
+outlandslide
+of nine chosen
+area.
+in
+the study area. Additionally, as the time progresses it can be observed that the model
+rightly shows the eight out of 9 landslides failures in the study area.
+
+ISPRS Int. J. Geo-Inf. 2023, 12, 105
+
+21 of 31
+
+3.4. Rise in PWP
+As part of the study, the PWP was calculated for the catchment region. Figure 14 plots
+the PWP extracted at the nine landslide sites in the study area against the time-varying
+rainfall rate. The plot shows a near linear rise in the PWP with respect to the rainfall.
+Furthermore, the PWP and FoS showed an inverse relationship at the nine landslide sites
+ISPRS Int. J. Geo-Inf. 2023, 12, x FOR PEER
+REVIEW
+of an
+33
+(Figures
+13 and 14). As in the case of rainfall-induced shallow landslides anywhere 23
+else,
+increase in the PWP indeed reduced the FoS at the nine landslide sites in the study area.
+
+Figure 14.
+14. Comparison
+Comparison of
+of the
+the rise
+rise in
+in PWP
+PWP (porewater
+(porewater pressure)
+pressure) with
+with respect
+respect to
+to rainfall,
+rainfall, from
+from the
+the
+Figure
+outputs of
+of nonoptimized
+nonoptimized and
+and optimized
+optimized model
+model runs
+runs at
+at 99 validation
+validation sites.
+sites. The
+The vertical
+vertical dotted
+dotted black
+black
+outputs
+line indicates
+indicates the
+the day
+day on
+on which the landslide was triggered.
+line
+
+4. Discussion
+4. Discussion
+The timing and distribution of shallow landslides were modeled in a catchment region
+The timing and distribution of shallow landslides were modeled in a catchment re(Figure 1) in Western Ghats through TRIGRS. The hydrogeomechanical properties used
+gion (Figure 1) in Western Ghats through TRIGRS. The hydrogeomechanical properties
+in TRIGRS to model the FoS and PWP were derived through two different sources: FAOused in TRIGRS to model the FoS and PWP were derived through two different sources:
+STATSGO and a regional soil texture map from DSSSC. Although TRIGRS computes the
+FAO-STATSGO and a regional soil texture map from DSSSC. Although TRIGRS computes
+FoS cellwise (i.e., gridded), the hydrogeomechanical parameters are provided zone-wise.
+the FoS cellwise (i.e., gridded), the hydrogeomechanical parameters are provided zoneThe available versions of TRIGRS do not have the ability to provide cell-wise hydrogewise. The available versions of TRIGRS do not have the ability to provide cell-wise hydroomechanical properties. Because the hydro-geomechanical parameters were derived from
+geomechanical properties. Because the hydro-geomechanical parameters were derived
+the soil texture information, the zones in TRIGRS approximately followed the soil texture
+from the soil texture information, the zones in TRIGRS approximately followed the soil
+map of the study area. The present study incorporated FAO-STATSGO soil information
+texture
+map of the study
+area. soil
+Theinformation
+present study
+incorporated
+FAO-STATSGO
+inforand high-resolution
+regional
+from
+DSSSC, which
+resulted in soil
+three
+and
+mation
+and
+high-resolution
+regional
+soil
+information
+from
+DSSSC,
+which
+resulted
+in
+eight soil types in the study area, respectively (Figure 4). Therefore, the study areathree
+was
+and
+eight soilinto
+types
+in the
+respectively
+4). Therefore,
+the study
+area
+categorized
+three
+andstudy
+eight area,
+zones.
+Although (Figure
+the spatial
+heterogeneity
+was better
+was
+categorized
+into
+three
+and
+eight
+zones.
+Although
+the
+spatial
+heterogeneity
+was
+better
+represented with the DSSSC soil texture, the modeled FoS from both soil textures were
+represented
+with the3.1),
+DSSSC
+soil to
+texture,
+theimprovisation.
+modeled FoSThis
+frommay
+both
+soilbeen
+textures
+were
+comparable (Section
+leading
+a lack of
+have
+due to
+the
+comparable
+(Section
+3.1),
+leading
+to
+a
+lack
+of
+improvisation.
+This
+may
+have
+been
+due
+to
+use of SHPs based on soil texture. This was further clarified by carrying out a sensitivity
+the
+use
+of
+SHPs
+based
+on
+soil
+texture.
+This
+was
+further
+clarified
+by
+carrying
+out
+a
+sensianalysis to quantify the impact of the SHP on the analysis of slope stability and to further
+tivity
+analysis
+quantifyofthe
+impact of
+the SHP
+the analysis
+of slope
+stability
+and to
+understand
+thetoabsence
+significant
+changes
+in on
+modeled
+FoS when
+the two
+soil texture
+further
+understand
+the
+absence
+of
+significant
+changes
+in
+modeled
+FoS
+when
+the
+two
+soil
+maps were used to derive the SHPs.
+texture maps were used to derive the SHPs.
+Because SHPs are important in determining the stability of hillslopes, saturated water content (θs); residual water content (θr); and a fitting parameter for soil size distribution
+(α), which is approximately equivalent to the inverse height of capillary rise [54], were
+selected for sensitivity analysis. In order to understand the impact of each parameter on
+
+ISPRS Int. J. Geo-Inf. 2023, 12, 105
+
+22 of 31
+
+Because SHPs are important in determining the stability of hillslopes, saturated water
+content (θ s ); residual water content (θ r ); and a fitting parameter for soil size distribution (α),
+which is approximately equivalent to the inverse height of capillary rise [54], were selected
+for sensitivity analysis. In order to understand the impact of each parameter on the final
+grid-based FoS, one-parameter-at-a-time (OAT) analyses were carried out. OAT analyses
+are often used in sensitivity analyses, parameter optimization, and calibrating physically
+based models [42,99–101].
+The current study considered a case of a finite and unsaturated profile. The finite depth
+was based on Equation (1). Based on Equations (4) and (5), the FoS was calculated for both
+the saturated and unsaturated zones, where each cell was treated as a unique sliding unit.
+Thus, failure analysis with pressure head determination provided the FoS for the depth
+profile for each cell. It is noted that the depth at which the FoS first reduced below one was
+considered the landslide initiation depth, which could vary depending on the soil properties
+as well as the rainfall intensity [92,102]. The depth may vary between the water table depth
+and the basal boundary [103]. The pressure head, utilized in Equations (4) and (5), was
+calculated based on the below equations based on Richard’s equation (Equation (7)).
+
+
+
+∂θ
+∂
+1 ∂ψ
+=
+K (ψ)
+−1
+(7)
+∂t
+∂z
+cos2 δ ∂Z
+where,
+
+K (ψ) = Ks exp(αψ∗ )
+
+The pressure head was obtained using Equation (9).
+
+
+K ( Z, t)
+cosδ
+ln
++ ψ0
+ψ( Z, t) =
+α1
+Ks
+
+(8)
+
+(9)
+
+A realistic range of θ s , ranging from 0.280 to 0.450, with a median of 0.365, was chosen
+to understand the impact of the saturated water content on the stability of terrain and
+to determine the landslide initiation zone (Figure 15). It can be seen that with the same
+rainfall intensities, a change in θ s impacted the FoS of the depth profile (Figure 15) as well
+as the time taken for the rising of the groundwater table (Table 2). The FoS corresponding
+to θ s = 0.365 reached < 1 on the seventh day. At the minimum θ s , an FoS < 1 was seen on
+the fifth day, while the cell remained stable for θ s = 0.450 (Figure 15). Figure 15 further
+quantifies the change in FoS (%) with respect to changes in θ s (%), where a 30% increase
+in θ s reflects a 15% change in the FoS. The OAT analyses carried out as part of the present
+study for θ s showed an approximate linear trend for the study area. Additionally, it can be
+seen from Table 2 that the landslide was initiated as soon as the groundwater table rose to
+depth of 0.50 m. The water table rise mechanism was already previously explained (Baum
+et al., 2010). Thus, as shown in Take et al., 2004, with the rise in pore water pressure to zero,
+the shear resistance fell. This led to an unstable zone. It is illustrated from both the depth
+profile in Figure 15 and Table 2 that the zone of weakness increased with the decrease in
+θ s , which represents the porosity of the soil. It is deciphered from Figure 15 that θ s had a
+significant role in estimating FoS and, thereby, the initiation time and spatial distribution of
+the landslides in the study area.
+
+ISPRS Int. J. Geo-Inf. 2023, 12, 105
+ISPRS Int. J. Geo-Inf. 2023, 12, x FOR PEER REVIEW
+
+23 of 31
+
+25 of 33
+
+Figure 15. Sensitivity analysis of saturated water content (θs): (Top) changes in FoS with depth for
+Figure
+15. period
+Sensitivity
+ofthe
+saturated
+content
+(θ s ): (Top)
+changesin
+inFoS
+FoSand
+with
+depth for
+a 9−day
+withanalysis
+respect to
+differentwater
+θs values;
+(Bottom
+Left) changes
+landslide
+a 9initiation
+−day period
+with change
+respectintoθthe
+different
+θ s values;
+(Bottom Left)
+changes
+and landslide
+time with
+s values.
+(Bottom
+right) Percentage
+change
+in FoSin
+in FoS
+accordance
+with
+the percentage
+change
+θs. in
+The
+lineright)
+on thePercentage
+bottom leftchange
+indicates
+the time
+at which the
+initiation
+time with
+change
+θ svertical
+values.dotted
+(Bottom
+in FoS
+in accordance
+with
+the percentage change θ s . The vertical dotted line on the bottom left indicates the time at which the
+median value of the selected parameter crossed the threshold FoS, and the horizontal line indicates
+the corresponding threshold FoS, which is 1.
+
+ISPRS Int. J. Geo-Inf. 2023, 12, 105
+
+24 of 31
+
+Table 2. Comparative analysis for landslide initiation based on variation in θ s .
+Sl. No.
+
+θs
+
+FoS < 1
+(Landslide Initiation Day)
+
+Depth to
+Groundwater Table
+
+Depth of Weak
+Zone
+
+1
+
+0.28
+
+Day 5
+
+0.50 m
+
+1–2 m
+
+2
+
+0.32
+
+Day 6
+
+0.48 m
+
+1.7–2 m
+
+3
+
+0.36
+
+Day 7
+
+0.46 m
+
+1.8–2 m
+
+4
+
+0.45
+
+Day 9 (Stable)
+
+0.76 m
+
+Stable
+
+As described above, an OAT analysis was carried out for θ r . The θ r values were
+considered from 0.01 to 0.1, with a median of 0.55, and the corresponding FoSs were
+modeled for a 9-day period and are plotted in Figure 16. The median θ r (0.055) reached the
+threshold value before the seventh day, and the soils with lower θ r values needed more
+time, up to 36 more hours, to become unstable. This change could be attributed to the
+increase in the water-holding capacity of the soil. On the other hand, higher θ r values
+started crossing the threshold FoS of one starting on the fifth day. It can be seen that a
+100% change in θ r produced only a 4% change in the FoS. It might be because of the fact
+that the θ r alone might have a lesser impact on the modeled FoS. In reality, landslide is a
+very complex phenomenon, and the interplay of multiple factors determine the mechanism
+behind its initiation. Furthermore, in order to understand the impact of θ r together with
+θ s and other factors, many-parameter-at-a-time (MAT) analyses should be carried out by
+simultaneously varying multiple parameters in the model. Even though MAT analyses will
+further shed light on the interconnection among various hydrogeomechanical parameters,
+the present study was limited to OAT because of its simplicity and the significantly less
+computational effort required.
+Along with θ s and θ r , α (a fitting parameter for soil size distribution and is approximately
+equivalent to the inverse height of capillary rise) was analyzed to comprehend its impact on
+FoS and thereby the initiation of landslides. The α values were varied from 0 to 10, and we
+modeled the FoS for a 9-day period. The experiments were carried out as in the cases for θ s
+and θ r and are plotted in Figure 16. The fall in FoS for 9 days with the α values 0.35, 1.00, 1.80,
+2.00, and 10.00 are highlighted in the plot. It is observed from Figure 16 that α values above
+two were less significant in determining the FoS than values from zero to two. Because any
+α value above two had less significance in determining the FoS in the study area, a range of
+zero to two with a median of one was considered for analyzing the percentage change in the
+FoS with respect to the percentage change in α (Figure 16). It has to be noted that any α value
+less than zero acts as a flag in TRIGRS to treat the terrain as tension-saturated.
+Two major observations were made as part the present study while selecting the input
+parameters for modeling the slope stability in complex terrain. Primarily, even though the
+regional DSSSC soil map had better soil information representing the study area, it still
+considered a mean θ s , θ r , and α for a zone based on the field observations and laboratory
+measurements of the soil samples. In reality, the SHPs vary for the same soil type based
+on the porosity, grain size, degree of compaction, etc., and complex terrain is more likely
+to reflect this trend. The subzonal variation must have strongly affected the modeled
+distribution and the computed initiation time of the landslides in the study area. Secondly,
+because the uncertainties present in spatially varying hydrological properties have an
+impact on the initiation time and spatial distribution in complex terrain, a robust approach
+has to be implemented to (1) accurately derive the hydrological properties through EO data
+sets in finer resolution and (2) provide the derived finer-resolution hydrological properties
+cell-wise rather than zone-wise as in the present versions of TRIGRS. An obvious solution
+for deriving hydrological properties that have a significant impact on the FoS is through
+inverse modeling. Although in situ collected soil samples and laboratory analyses are rather
+more intuitive than modeling approaches, it has to be noted that in situ data collection,
+sampling in uniform intervals (spatial and temporal), and analyses are very costly and
+often impossibly laborious for complex and inaccessible terrain.
+
+ISPRS Int. J. Geo-Inf. 2023, 12, 105
+
+phenomenon, and the interplay of multiple factors determine the mechanism behind its
+initiation. Furthermore, in order to understand the impact of θr together with θs and other
+factors, many-parameter-at-a-time (MAT) analyses should be carried out by simultaneously varying multiple parameters in the model. Even though MAT analyses will further
+shed light on the interconnection among various hydrogeomechanical parameters,
+25 ofthe
+31
+present study was limited to OAT because of its simplicity and the significantly less computational effort required.
+
+Figure 16. Sensitivity analysis of SHPs, residual water content (θ r ), and a fitting parameter for
+soil size distribution (α), which is approximately equivalent to the inverse height of capillary rise.
+(Left) Changes in FoS for a 9−day period with respect to the different θ r and α. (Right) Percentage
+change FoS in accordance with the percentage changes in θ r , and α. The vertical dotted line on the
+left side of the figure indicates the time at which the median value of the selected parameter crossed
+the threshold FoS, and the horizontal line indicates the corresponding threshold FoS, which is 1.
+
+Along with the results and findings of the present study, the significance of the inherent uncertainties present in the hydraulic parameters in determining the model outputs
+was also put forward in a previous study on a landslide-prone area in Brazil [104]. The
+study further emphasized the need for developing novel strategies to generate hydraulic
+parameters that represent spatial variation in finer resolution. A recent review [45] on
+TRIGRS and its performance compared with that of other physical slope stability models
+also concluded that refined hydrological parameters can generate more realistic results.
+Another study carried out in Norway focused on the initial conditions of the terrain and
+concluded that wetter initial conditions lead to early instability and overestimation of
+landslide pixels in the study area [105]. A data-sparse region in the northern part of Kerala
+was studied for landslide hazard zonation using TRIGRS and showed that providing spatially varying SHPs significantly reduces the overestimation of landslide pixels [62]. The
+study further raised concerns regarding the lack of flexibility to provide local variations in
+hydrogeomechanical parameters to the current versions of TRIGRS. The study suggested
+the modification of TRIGRS to receive input parameters with local variations rather than
+generalizing the properties zone-wise. A number of methods to inversely derive SHPs
+through EO data sets have been put forward to overcome the limitations of regression
+functions [106–108]. The high-resolution SHPs derived through inverse modeling [108] can
+be a possible alternative, especially in areas where field data are difficult to retrieve.
+
+ISPRS Int. J. Geo-Inf. 2023, 12, 105
+
+26 of 31
+
+5. Conclusions
+The present study modeled the distribution and timing of rainfall-induced shallow
+landslides in a catchment in Western Ghats. It was shown how a physically based model
+can be used for understanding the timing and distribution of landslides with minimal
+ground-based data sets. This study used a set of satellite-derived terrain parameters
+and hydrogeomechanical parameters with ground-measured rainfall data to compute the
+FoS and PWP in a landslide-prone area. The model was able to predict the landslide
+distribution in the spatial region with a TPR of 68%. Additionally, for nine landslides, the
+model predicted the occurrence of eight landslides, with precise timing of three landslides.
+In addition, the present study analyzed the impact of the SHPs in computing the FoS and
+thereby predicting the timing and distribution of landslides in the study area. It could
+be seen that with the increase in the storage capacity of soil, it became more stable, and
+a prominent shift was seen in the initiation of the landslide events. Thus, the precise
+timing of a landslide event was dependent on the SHPs. Although the model could
+compute the change in the FoS and PWP in accordance with the rainfall received in the
+study area, it is worth mentioning the challenges and room of improvement when using
+the model, TRIGRS. Primarily, the lack of high-resolution SHPs was one of the major
+challenges faced when executing the slope stability model. Although a field-based highresolution soil texture map from DSSSC was used to generate high-resolution FoS and
+could reduce the number of false positives, it needs further improvement, especially in
+computing the timing of landslide initiation. A high-resolution map of SHPs can provide
+more control and heterogeneity and thereby improve the modeling of the FoS and PWP.
+Because the hydrologic response of terrain is determined by the spatial distribution of the
+thickness of soil columns, any physically based slope stability model heavily depends on
+the resolution and accuracy of the soil depth. In TRIGRS, the depth to slip surface and time
+taken to reach complete saturation of each cell are computed as a function of soil depth. It
+further emphasizes the requirement for the high-resolution spatial distribution of soil depth.
+Although it is extremely difficult to obtain in situ observations of soil thickness for larger
+and complicated terrain, a higher number of in situ and uniformly distributed soil thickness
+sampling observations would resolve this problem to a certain extent. Although necessary
+steps, such as pit removal, were taken prior to the analyses, the present study heavily
+relied upon SRTM 30 m DEM to derive the terrain and hydrological parameters, such as
+slope, flow direction, and TopoIndex parameters used in TRIGRS. A high-resolution DEM
+from airborne surveys, such as drone-based surveys, could have significantly improved
+TRIGRS’ outputs.
+Furthermore, the dynamic physically based slope stability model, TRIGRS (version 2.1),
+does not provide the flexibility to input the hydrogeomechanical parameters grid- or pixelwise. The grid-wise provision of input data sets with the inclusion of the impact of local
+geological and anthropogenic features and hydrogeomechanical properties can significantly
+improve the model outputs. Although the grid-wise provision of the hydrogeomechanical
+properties will be computationally expensive, it may significantly enhances modeling
+capabilities. On the basis of the results obtained in the present study and the sensitivity
+analysis carried out, we further plan to generate SHPs in finer resolution and provide SHPs
+cell-wise, rather than grid-wise, in TRIGRS.
+Despite of the limitations of this study and the unavailability of high-resolution terrain
+and hydrogeomechanical information, the model could fairly demarcate the distribution
+and capture the timing of rainfall-induced shallow landslides in the study area. It can
+be further concluded that the model and method can be used as a measure to assess the
+landslide vulnerabilities in the Western Ghats area or anywhere else where the input data
+sets are available. Moreover, the physically based slope stability model used in the present
+study can be used as a primary approach to comprehensively understand the stability
+of hillslopes where input data sets are limited or only remotely sensed EO data sets are
+readily available.
+
+ISPRS Int. J. Geo-Inf. 2023, 12, 105
+
+27 of 31
+
+Author Contributions: Conceptualization, Juby Thomas, Manika Gupta, and Prashant K. Srivastava; methodology, Juby Thomas and Manika Gupta; writing—original draft, Juby Thomas;
+writing—editing and review, Manika Gupta, Prashant K. Srivastava, and George P. Petropoulos;
+software, Juby Thomas and Manika Gupta; data curation, Juby Thomas; visualization, Juby Thomas;
+resources, Prashant K. Srivastava and George P. Petropoulos; supervision, Manika Gupta. All authors
+have read and agreed to the published version of the manuscript.
+Funding: This research received no external funding.
+Data Availability Statement: The current study used open-source data from various platforms and
+the web portals that host the EO data sets used in the study. These data sets were from NASA
+and USGS including GPM Precipitation Data Directory (https://gpm.nasa.gov/data/directory,
+accessed on 24 November 2022) and Earth Resources Observation and Science (EROS) Archive
+(https://www.usgs.gov/centers/eros, accessed on 24 November 2022). Precipitation data sets were
+obtained from India Meteorological Department’s web portal (https://www.imdpune.gov.in/cmpg/
+Griddata/Rainfall_25_NetCDF.html, accessed on 27 January 2023). The landslide events used for the
+study ere documented by NRSC, GSI, and KSDMA. Upon reasonable request, the data sets used for
+the present study and the results generated are available from the authors.
+Acknowledgments: The authors acknowledge the support and facilities provided by the Department
+of Geology, University of Delhi, Delhi, India, where this work was carried out. The authors also
+acknowledge the open-source data sets from National Aeronautics and Space Administration (NASA),
+United States Geological Survey (USGS), Geological Survey of India (GSI), India Meteorological
+Department (IMD), and Central Water Commission (CWC).
+Conflicts of Interest: The authors declare no conflict of interest.
+
+References
+1.
+2.
+3.
+4.
+5.
+6.
+7.
+8.
+9.
+
+10.
+11.
+12.
+13.
+14.
+15.
+16.
+
+Manenti, S.; Amicarelli, A.; Palazzolo, N.; Bordoni, M.; Creaco, E.; Meisina, C. Post-Failure Dynamics of Rainfall-Induced
+Landslide in Oltrepò Pavese. Water 2020, 12, 2555. [CrossRef]
+Saha, S.; Sarkar, R.; Roy, J.; Hembram, T.K.; Acharya, S.; Thapa, G.; Drukpa, D. Measuring Landslide Vulnerability Status of
+Chukha, Bhutan Using Deep Learning Algorithms. Sci. Rep. 2021, 11, 16374. [CrossRef] [PubMed]
+Stancanelli, L.M.; Peres, D.J.; Cancelliere, A.; Foti, E. A Combined Triggering-Propagation Modeling Approach for the Assessment
+of Rainfall Induced Debris Flow Susceptibility. J. Hydrol. 2017, 550, 130–143. [CrossRef]
+Korup, O.; Densmore, A.L.; Schlunegger, F. The Role of Landslides in Mountain Range Evolution. Geomorphology 2010, 120, 77–90.
+[CrossRef]
+von Ruette, J.; Lehmann, P.; Or, D. Rainfall-triggered Shallow Landslides at Catchment Scale: Threshold Mechanics-based
+Modeling for Abruptness and Localization. Water Resour. Res. 2013, 49, 6266–6285. [CrossRef]
+Acharya, K.P.; Bhandary, N.P.; Dahal, R.K.; Yatabe, R. Seepage and Slope Stability Modelling of Rainfall-Induced Slope Failures in
+Topographic Hollows. Geomat. Nat. Hazards Risk 2016, 7, 721–746. [CrossRef]
+Carrión-Mero, P.; Montalván-Burbano, N.; Morante-Carballo, F.; Quesada-Román, A.; Apolo-Masache, B. Worldwide Research
+Trends in Landslide Science. Int. J. Environ. Res. Public Health 2021, 18, 9445. [CrossRef]
+Scaioni, M.; Longoni, L.; Melillo, V.; Papini, M. Remote Sensing for Landslide Investigations: An Overview of Recent Achievements and Perspectives. Remote Sens. 2014, 6, 9600–9652. [CrossRef]
+Zhang, J.; van Westen, C.J.; Tanyas, H.; Mavrouli, O.; Ge, Y.; Bajrachary, S.; Gurung, D.R.; Dhital, M.R.; Khanal, N.R. How Size
+and Trigger Matter: Analyzing Rainfall-and Earthquake-Triggered Landslide Inventories and Their Causal Relation in the Koshi
+River Basin, Central Himalaya. Nat. Hazards Earth Syst. Sci. 2019, 19, 1789–1805. [CrossRef]
+Petley, D. Global Patterns of Loss of Life from Landslides. Geology 2012, 40, 927–930. [CrossRef]
+Highland, L.; Bobrowsky, P.T. The Landslide Handbook: A Guide to Understanding Landslides; US Geological Survey: Reston, VA,
+USA, 2008.
+Park, J.-Y.; Lee, S.-R.; Lee, D.-H.; Kim, Y.-T.; Lee, J.-S. A Regional-Scale Landslide Early Warning Methodology Applying Statistical
+and Physically Based Approaches in Sequence. Eng. Geol. 2019, 260, 105193. [CrossRef]
+Nadim, F.; Kjekstad, O.; Peduzzi, P.; Herold, C.; Jaedicke, C. Global Landslide and Avalanche Hotspots. Landslides 2006, 3, 159–173.
+[CrossRef]
+Ellen, S.D.; Wieczorek, G.F. Landslides, Floods, and Marine Effects of the Storm of January 3–5, 1982, in the San Francisco Bay Region,
+California; US Government Printing Office: Washington, DC, USA, 1902; Volume 1434.
+Park, D.W.; Nikhil, N.V.; Lee, S.R. Landslide and Debris Flow Susceptibility Zonation Using TRIGRS for the 2011 Seoul Landslide
+Event. Nat. Hazards Earth Syst. Sci. 2013, 13, 2833–2849. [CrossRef]
+Godt, J.W.; Baum, R.L.; Savage, W.Z.; Salciarini, D.; Schulz, W.H.; Harp, E.L. Transient Deterministic Shallow Landslide Modeling:
+Requirements for Susceptibility and Hazard Assessments in a GIS Framework. Eng. Geol. 2008, 102, 214–226. [CrossRef]
+
+ISPRS Int. J. Geo-Inf. 2023, 12, 105
+
+17.
+18.
+19.
+20.
+
+21.
+22.
+23.
+24.
+25.
+26.
+27.
+28.
+29.
+30.
+31.
+32.
+33.
+34.
+35.
+
+36.
+37.
+38.
+39.
+40.
+41.
+42.
+43.
+
+28 of 31
+
+Campbell, R.H. Debris Flows Originating from Soil Slips during Rainstorms in Southern California. Q. J. Eng. Geol. 1974, 7,
+339–349. [CrossRef]
+Crosta, G.B.; Frattini, P. Distributed Modelling of Shallow Landslides Triggered by Intense Rainfall. Nat. Hazards Earth Syst. Sci.
+2003, 3, 81–93. [CrossRef]
+Bordoni, M.; Meisina, C.; Valentino, R.; Lu, N.; Bittelli, M.; Chersich, S. Hydrological Factors Affecting Rainfall-Induced Shallow
+Landslides: From the Field Monitoring to a Simplified Slope Stability Analysis. Eng. Geol. 2015, 193, 19–37. [CrossRef]
+Persichillo, M.G.; Bordoni, M.; Meisina, C.; Bartelletti, C.; Barsanti, M.; Giannecchini, R.; D’Amato Avanzi, G.; Galanti, Y.; Cevasco,
+A.; Brandolini, P. Shallow Landslides Susceptibility Assessment in Different Environments. Geomat. Nat. Hazards Risk 2017, 8,
+748–771. [CrossRef]
+Aram, A.; Dalalian, M.R.; Saedi, S.; Rafieyan, O.; Darbandi, S. An Assessment of Data Mining and Bivariate Statistical Methods
+for Landslide Susceptibility Mapping. Sci. Iran. 2022, 29, 1077–1094.
+Zizioli, D.; Meisina, C.; Valentino, R.; Montrasio, L. Comparison between Different Approaches to Modeling Shallow Landslide
+Susceptibility: A Case History in Oltrepo Pavese, Northern Italy. Nat. Hazards Earth Syst. Sci. 2013, 13, 559–573. [CrossRef]
+Mathew, J.; Kundu, S.; Kumar, K.V.; Pant, C.C. Hydrologically Complemented Deterministic Slope Stability Analysis in Part of
+Indian Lesser Himalaya. Geomat. Nat. Hazards Risk 2016, 7, 1557–1576. [CrossRef]
+Kirschbaum, D.B.; Adler, R.; Hong, Y.; Kumar, S.; Peters-Lidard, C.; Lerner-Lam, A. Advances in Landslide Nowcasting:
+Evaluation of a Global and Regional Modeling Approach. Environ. Earth Sci. 2012, 66, 1683–1696. [CrossRef]
+Thomas, J.; Gupta, M.; Prusty, G. Assessing Global Parameters of Slope Stability Model Using Earth Data Observations for
+Forecasting Rainfall-Induced Shallow Landslides. J. Appl. Geophys. 2023; under review.
+Wieczorek, G.F.; Morgan, B.A.; Campbell, R.H. Debris-Flow Hazards in the Blue Ridge of Central Virginia. Environ. Eng. Geosci.
+2000, 6, 3–23. [CrossRef]
+Crosta, G. Rainfall Threshold Regionalization: An Aid for Landslide Susceptibility Zonation. Environ. Geol. 1998, 35, 131–145.
+[CrossRef]
+Coco, L.; Macrini, D.; Piacentini, T.; Buccolini, M. Landslide Susceptibility Mapping by Comparing GIS-Based Bivariate Methods:
+A Focus on the Geomorphological Implication of the Statistical Results. Remote Sens. 2021, 13, 4280. [CrossRef]
+Chalkias, C.; Ferentinou, M.; Polykretis, C. GIS-Based Landslide Susceptibility Mapping on the Peloponnese Peninsula, Greece.
+Geosciences 2014, 4, 176–190. [CrossRef]
+Bui, D.T.; Lofman, O.; Revhaug, I.; Dick, O. Landslide Susceptibility Analysis in the Hoa Binh Province of Vietnam Using
+Statistical Index and Logistic Regression. Nat. Hazards 2011, 59, 1413–1444. [CrossRef]
+Metternicht, G.; Hurni, L.; Gogu, R. Remote Sensing of Landslides: An Analysis of the Potential Contribution to Geo-Spatial
+Systems for Hazard Assessment in Mountainous Environments. Remote Sens. Environ. 2005, 98, 284–303. [CrossRef]
+Guzzetti, F.; Mondini, A.C.; Cardinali, M.; Fiorucci, F.; Santangelo, M.; Chang, K.-T. Landslide Inventory Maps: New Tools for an
+Old Problem. Earth-Sci. Rev. 2012, 112, 42–66. [CrossRef]
+Casagli, N.; Catani, F.; Puglisi, C.; Delmonaco, G.; Ermini, L.; Margottini, C. An Inventory-Based Approach to Landslide
+Susceptibility Assessment and Its Application to the Virginio River Basin, Italy. Environ. Eng. Geosci. 2004, 10, 203–216. [CrossRef]
+Stanley, T.; Kirschbaum, D.B. A Heuristic Approach to Global Landslide Susceptibility Mapping. Nat. Hazards 2017, 87, 145–164.
+[CrossRef]
+Francipane, A.; Arnone, E.; Lo Conti, F.; Puglisi, C.; Noto, L.V. A Comparison between Heuristic, Statistical, and Data-Driven
+Methods in Landslide Susceptibility Assessment: An Application to the Briga and Giampilieri Catchments. In Proceedings of the
+11th International Conference on Hydroinformatics, New York City, NY, USA, 8 January 2014.
+Pasang, S.; Kubíček, P. Landslide Susceptibility Mapping Using Statistical Methods along the Asian Highway, Bhutan. Geosciences
+2020, 10, 430. [CrossRef]
+Zhang, K.; Wu, X.; Niu, R.; Yang, K.; Zhao, L. The Assessment of Landslide Susceptibility Mapping Using Random Forest and
+Decision Tree Methods in the Three Gorges Reservoir Area, China. Environ. Earth Sci. 2017, 76, 405. [CrossRef]
+Marin, R.J.; Mattos, Á.J. Physically-Based Landslide Susceptibility Analysis Using Monte Carlo Simulation in a Tropical Mountain
+Basin. Georisk Assess. Manag. Risk Eng. Syst. Geohazards 2020, 14, 192–205. [CrossRef]
+Raia, S.; Alvioli, M.; Rossi, M.; Baum, R.L.; Godt, J.W.; Guzzetti, F. Improving Predictive Power of Physically Based RainfallInduced Shallow Landslide Models: A Probabilistic Approach. Geosci. Model Dev. 2014, 7, 495–514. [CrossRef]
+Vieira, B.C.; Fernandes, N.F. Shallow Landslide Prediction in the Serra Do Mar, São Paulo, Brazil. Nat. Hazards Earth Syst. Sci.
+2010, 10, 1829–1837. [CrossRef]
+Oguz, E.A.; Depina, I.; Thakur, V. Effects of Soil Heterogeneity on Susceptibility of Shallow Landslides. Landslides 2022, 19, 67–83.
+[CrossRef]
+Salciarini, D.; Godt, J.W.; Savage, W.Z.; Conversini, P.; Baum, R.L.; Michael, J.A. Modeling Regional Initiation of Rainfall-Induced
+Shallow Landslides in the Eastern Umbria Region of Central Italy. Landslides 2006, 3, 181–194. [CrossRef]
+Salciarini, D.; Godt, J.W.; Savage, W.Z.; Baum, R.L.; Coversini, P. Modeling the rainfall-induced development of shallow landslides
+in eastern Umbria, central Italy, using the TRIGRS (transient rainfall infiltration and grid-based slope-stability) approach. In
+Proceedings of the 1st North American Landslide Conference, Vail, CO, USA, 3–8 June 2007; Turner, A.K., Schuster, R.L., Eds.;
+Association of Environmental and Engineering Geologists: Lexington, KY, USA, 2007; pp. 294–304.
+
+ISPRS Int. J. Geo-Inf. 2023, 12, 105
+
+44.
+45.
+46.
+47.
+48.
+49.
+50.
+51.
+52.
+53.
+54.
+55.
+56.
+57.
+58.
+59.
+60.
+61.
+62.
+
+63.
+
+64.
+65.
+66.
+
+67.
+68.
+69.
+70.
+
+29 of 31
+
+Zhang, S.; Jiang, Q.; Wu, D.; Xu, X.; Tan, Y.; Shi, P. Improved Method of Defining Rainfall Intensity and Duration Thresholds for
+Shallow Landslides Based on TRIGRS. Water 2022, 14, 524. [CrossRef]
+Konig, T.; Hermann, K.U.X.; Corsi, A. Landslide Risk Management Using the Mathematical Model Trigrs. Geosci. Geociências 2022,
+41, 243–254.
+Zhuang, J.; Peng, J.; Wang, G.; Iqbal, J.; Wang, Y.; Li, W.; Xu, Q.; Zhu, X. Prediction of Rainfall-induced Shallow Landslides in the
+Loess Plateau, Yan’an, China, Using the TRIGRS Model. Earth Surf. Process. Landf. 2017, 42, 915–927. [CrossRef]
+Mergili, M.; Marchesini, I.; Alvioli, M.; Metz, M.; Schneider-Muntau, B.; Rossi, M.; Guzzetti, F. A Strategy for GIS-Based 3-D Slope
+Stability Modelling over Large Areas. Geosci. Model Dev. 2014, 7, 2969–2982. [CrossRef]
+Rossi, G.; Catani, F.; Leoni, L.; Segoni, S.; Tofani, V. HIRESSS: A Physically Based Slope Stability Simulator for HPC Applications.
+Nat. Hazards Earth Syst. Sci. 2013, 13, 151–166. [CrossRef]
+Simoni, S.; Zanotti, F.; Bertoldi, G.; Rigon, R. Modelling the Probability of Occurrence of Shallow Landslides and Channelized
+Debris Flows Using GEOtop-FS. Hydrol. Process. Int. J. 2008, 22, 532–545. [CrossRef]
+Montrasio, L.; Valentino, R. A Model for Triggering Mechanisms of Shallow Landslides. Nat. Hazards Earth Syst. Sci. 2008, 8,
+1149–1159. [CrossRef]
+Pack, R.T.; Tarboton, D.G.; Goodwin, C.N. SINMAP 2.0—A Stability Index Approach to Terrain Stability Hazard Mapping, User’s
+Manual. 1999. Available online: https://digitalcommons.usu.edu/cee_facpub/16/ (accessed on 18 December 2022).
+Montgomery, D.R.; Dietrich, W.E. A Physically Based Model for the Topographic Control on Shallow Landsliding. Water Resour.
+Res. 1994, 30, 1153–1171. [CrossRef]
+Wu, W.; Sidle, R.C. A Distributed Slope Stability Model for Steep Forested Basins. Water Resour. Res. 1995, 31, 2097–2110.
+[CrossRef]
+Baum, R.L.; Savage, W.Z.; Godt, J.W. TRIGRS: A Fortran Program for Transient Rainfall Infiltration and Grid-Based Regional SlopeStability Analysis, Version 2.0; US Geological Survey: Reston, VA, USA, 2008.
+O’loughlin, E.M. Prediction of Surface Saturation Zones in Natural Catchments by Topographic Analysis. Water Resour. Res. 1986,
+22, 794–804. [CrossRef]
+Dikshit, A.; Satyam, N.; Pradhan, B. Estimation of Rainfall-Induced Landslides Using the TRIGRS Model. Earth Syst. Environ.
+2019, 3, 575–584. [CrossRef]
+Ciurleo, M.; Ferlisi, S.; Foresta, V.; Mandaglio, M.C.; Moraci, N. Landslide Susceptibility Analysis by Applying TRIGRS to a
+Reliable Geotechnical Slope Model. Geosciences 2021, 12, 18. [CrossRef]
+Take, W.A.; Bolton, M.D.; Wong, P.C.P.; Yeung, F.J. Evaluation of Landslide Triggering Mechanisms in Model Fill Slopes. Landslides
+2004, 1, 173–184. [CrossRef]
+Montrasio, L.; Schilirò, L.; Terrone, A. Physical and Numerical Modelling of Shallow Landslides. Landslides 2016, 13, 873–883.
+[CrossRef]
+Melo, C.M.; Kobiyama, M.; Michel, G.P.; de Brito, M.M. The Relevance of Geotechnical-Unit Characterization for LandslideSusceptibility Mapping with SHALSTAB. GeoHazards 2021, 2, 383–397. [CrossRef]
+Rana, H.; Babu, G.L. Regional Back Analysis of Landslide Events Using TRIGRS Model and Rainfall Threshold: An Approach to
+Estimate Landslide Hazard for Kodagu, India. Bull. Eng. Geol. Environ. 2022, 81, 160. [CrossRef]
+Weidner, L.; Oommen, T.; Escobar-Wolf, R.; Sajinkumar, K.S.; Samuel, R.A. Regional-Scale Back-Analysis Using TRIGRS: An
+Approach to Advance Landslide Hazard Modeling and Prediction in Sparse Data Regions. Landslides 2018, 15, 2343–2356.
+[CrossRef]
+Liao, Z.; Hong, Y.; Kirschbaum, D.; Adler, R.F.; Gourley, J.J.; Wooten, R. Evaluation of TRIGRS (Transient Rainfall Infiltration and
+Grid-Based Regional Slope-Stability Analysis)’s Predictive Skill for Hurricane-Triggered Landslides: A Case Study in Macon
+County, North Carolina. Nat. Hazards 2011, 58, 325–339. [CrossRef]
+Baum, R.L.; Savage, W.Z.; Godt, J.W. TRIGRS-A Fortran Program for Transient Rainfall Infiltration and Grid-Based Regional SlopeStability Analysis; Open-File Rep; US Geological Survey: Reston, VA, USA, 2002; Volume 38, p. 424.
+Alvioli, M.; Baum, R.L. Parallelization of the TRIGRS Model for Rainfall-Induced Landslides Using the Message Passing Interface.
+Environ. Model. Softw. 2016, 81, 122–135. [CrossRef]
+Hao, L.; Rajaneesh, A.; Van Westen, C.; Sajinkumar, K.S.; Martha, T.R.; Jaiswal, P.; McAdoo, B.G. Constructing a Complete
+Landslide Inventory Dataset for the 2018 Monsoon Disaster in Kerala, India, for Land Use Change Analysis. Earth Syst. Sci. Data
+2020, 12, 2899–2918. [CrossRef]
+Sajinkumar, K.S.; Anbazhagan, S.; Pradeepkumar, A.P.; Rani, V.R. Weathering and Landslide Occurrences in Parts of Western
+Ghats, Kerala. J. Geol. Soc. India 2011, 78, 249–257. [CrossRef]
+Kuriakose, S.L.; Sankar, G.; Muraleedharan, C. History of Landslide Susceptibility and a Chorology of Landslide-Prone Areas in
+the Western Ghats of Kerala, India. Environ. Geol. 2009, 57, 1553–1568. [CrossRef]
+Crozier, M.J. Deciphering the Effect of Climate Change on Landslide Activity: A Review. Geomorphology 2010, 124, 260–267.
+[CrossRef]
+Johnston, E.C.; Davenport, F.V.; Wang, L.; Caers, J.K.; Muthukrishnan, S.; Burke, M.; Diffenbaugh, N.S. Quantifying the Effect
+of Precipitation on Landslide Hazard in Urbanized and Non-Urbanized Areas. Geophys. Res. Lett. 2021, 48, e2021GL094038.
+[CrossRef]
+
+ISPRS Int. J. Geo-Inf. 2023, 12, 105
+
+71.
+
+72.
+73.
+74.
+75.
+
+76.
+77.
+78.
+79.
+80.
+81.
+82.
+83.
+84.
+85.
+
+86.
+
+87.
+88.
+89.
+90.
+
+91.
+92.
+93.
+94.
+95.
+96.
+97.
+98.
+
+30 of 31
+
+Seneviratne, S.; Nicholls, N.; Easterling, D.; Goodess, C.; Kanae, S.; Kossin, J.; Luo, Y.; Marengo, J.; McInnes, K.; Rahimi, M.
+Changes in Climate Extremes and Their Impacts on the Natural Physical Environment; Cambridge University Press: Cambridge, UK,
+2012.
+Hunt, K.M.R.; Menon, A. The 2018 Kerala Floods: A Climate Change Perspective. Clim. Dyn. 2020, 54, 2433–2446. [CrossRef]
+Rai, P.K.; Singh, G.P.; Dash, S.K. Projected Changes in Extreme Precipitation Events over Various Subdivisions of India Using
+RegCM4. Clim. Dyn. 2020, 54, 247–272. [CrossRef]
+Shashikanth, K.; Ghosh, S.; Karmakar, S. Future Projections of Indian Summer Monsoon Rainfall Extremes over India with
+Statistical Downscaling and Its Consistency with Observed Characteristics. Clim. Dyn. 2018, 51, 1–15. [CrossRef]
+Central Water Commission; Study Report: Kerala Floods of August 2018. Ministry of Water Resources, River Development
+& Ganga Rejuvenation, Government of India, New Delhi, 2018. Available online: http://cwc.gov.in/main/downloads/
+KeralaFloodReport/Rev-1.pdf (accessed on 18 December 2022).
+Sulal, N.L.; Archana, K.G. Note on Post Disaster Studies for Landslides Occurred in June 2018 At Idukki District, Kerala; Geological
+Survey of India: Thiruvananthapuram, India, 2019.
+Megha, V.; Joshi, V.; Kakde, N.; Jaybhaye, A.; Dhoble, D. Flood Mapping and Analysis Using Sentinel Application Platform
+(SNAP)—A Case Study of Kerala. Int. J. Res. Eng. Sci. Manag. 2019, 2, 486–488.
+Vishnu, C.L.; Sajinkumar, K.S.; Oommen, T.; Coffman, R.A.; Thrivikramji, K.P.; Rani, V.R.; Keerthy, S. Satellite-Based Assessment
+of the August 2018 Flood in Parts of Kerala, India. Geomat. Nat. Hazards Risk 2019, 10, 758–767. [CrossRef]
+Sankar, G. Monsoon Fury in Kerala—A Geo-Environmental Appraisal. J. Geol. Soc. India 2018, 92, 383–388. [CrossRef]
+Singh, B.; Singh, P.; Supriya, K.; Singh, M. An Overview on Kerala Floods: Loss of Human Lives as Well as Biodiversity in God’s
+Own Country. State Gov. 2018, 7, 7.
+Miller, D.A.; White, R.A. A Conterminous United States Multilayer Soil Characteristics Dataset for Regional Climate and
+Hydrology Modeling. Earth Interact. 1998, 2, 1–26. [CrossRef]
+Tian, Y.; Peters-Lidard, C.D.; Kumar, S.V.; Geiger, J.; Houser, P.R.; Eastman, J.L.; Dirmeyer, P.; Doty, B.; Adams, J. High-Performance
+Land Surface Modeling with a Linux Cluster. Comput. Geosci. 2008, 34, 1492–1504. [CrossRef]
+Marin, R.J.; Mattos, Á.J.; Fernández-Escobar, C.J. Understanding the Sensitivity to the Soil Properties and Rainfall Conditions of
+Two Physically-Based Slope Stability Models. Boletín Geol. 2022, 44, 93–109. [CrossRef]
+Tarboton, D.G. TauDEM (Terrain Analysis Using Digital Elevation Models); Utah State University: Logan, UT, USA, 2004.
+Pai, D.S.; Rajeevan, M.; Sreejith, O.P.; Mukhopadhyay, B.; Satbha, N.S. Development of a New High Spatial Resolution (0.25 ×
+0.25) Long Period (1901–2010) Daily Gridded Rainfall Data Set over India and Its Comparison with Existing Data Sets over the
+Region. Mausam 2014, 65, 1–18. [CrossRef]
+Huffman, G.J.; Stocker, E.F.; Bolvin, D.T.; Nelkin, E.J.; Tan, J. GPM 752 IMERG Final Precipitation L3 Half Hourly 0.1 Degree x 0.1
+Degree V06, Greenbelt, 753 MD, Goddard Earth Sciences Data and Information Services Center (GES DISC). 2019. Available
+online: https://disc.gsfc.nasa.gov/datasets/GPM_3IMERGHH_06/summary (accessed on 18 December 2019). [CrossRef]
+Alvioli, M.; Lee, G.; An, H.U. Three-Dimensional, Time-Dependent Modeling of Rainfall-Induced Landslides over a Digital
+Landscape: A Case Study. Landslides 2018, 15, 1071–1084.
+Tufano, R.; Formetta, G.; Calcaterra, D.; De Vita, P. Hydrological Control of Soil Thickness Spatial Variability on the Initiation of
+Rainfall-Induced Shallow Landslides Using a Three-Dimensional Model. Landslides 2021, 18, 3367–3380. [CrossRef]
+Fusco, F.; Mirus, B.B.; Baum, R.L.; Calcaterra, D.; De Vita, P. Incorporating the Effects of Complex Soil Layering and Thickness
+Local Variability into Distributed Landslide Susceptibility Assessments. Water 2021, 13, 713. [CrossRef]
+Del Soldato, M.; Pazzi, V.; Segoni, S.; De Vita, P.; Tofani, V.; Moretti, S. Spatial Modeling of Pyroclastic Cover Deposit Thickness
+(Depth to Bedrock) in Peri-volcanic Areas of Campania (Southern Italy). Earth Surf. Process. Landforms 2018, 43, 1757–1767.
+[CrossRef]
+De Vita, P.; Agrello, D.; Ambrosino, F. Landslide Susceptibility Assessment in Ash-Fall Pyroclastic Deposits Surrounding Mount
+Somma-Vesuvius: Application of Geophysical Surveys for Soil Thickness Mapping. J. Appl. Geophys. 2006, 59, 126–139. [CrossRef]
+Baum, R.L.; Godt, J.W.; Savage, W.Z. Estimating the Timing and Location of Shallow Rainfall-inducedlandslides Using a Model
+for Transient, Unsaturated Infiltration. J. Geophys. Res. 2010, 115, 3013. [CrossRef]
+Baum, R.L.; Godt, J.W. Early Warning of Rainfall-Induced Shallow Landslides and Debris Flows in the USA. Landslides 2010, 7,
+259–272. [CrossRef]
+O’Callaghan, J.F.; Mark, D.M. The Extraction of Drainage Networks from Digital Elevation Data. Comput. Vis. Graph. Image
+Process. 1984, 28, 323–344. [CrossRef]
+Jenson, S.K.; Domingue, J.O. Extracting Topographic Structure from Digital Elevation Data for Geographic Information System
+Analysis. Photogramm. Eng. Remote Sens. 1988, 54, 1593–1600.
+Garbrecht, J.; Martz, L.W. The Assignment of Drainage Direction over Flat Surfaces in Raster Digital Elevation Models. J. Hydrol.
+1997, 193, 204–213. [CrossRef]
+Vanapalli, S.K.; Fredlund, D.G. Comparison of Different Procedures to Predict Unsaturated Soil Shear Strength. Adv. Unsaturated
+Geotech. 2000, 195–209. [CrossRef]
+Thomas, J.; Gupta, M. Prediction of Rainfall-Induced Shallow Landslides through Integration of Hydrological Model with a Slope
+Stability Model. In Proceedings of the EGU General Assembly, Vienna, Austria, 23–27 May 2022.
+
+ISPRS Int. J. Geo-Inf. 2023, 12, 105
+
+31 of 31
+
+99.
+
+Gioia, E.; Speranza, G.; Ferretti, M.; Godt, J.W.; Baum, R.L.; Marincioni, F. Application of a Process-Based Shallow Landslide
+Hazard Model over a Broad Area in Central Italy. Landslides 2016, 13, 1197–1214. [CrossRef]
+100. Zieher, T.; Rutzinger, M.; Schneider-Muntau, B.; Perzl, F.; Leidinger, D.; Formayer, H.; Geitner, C. Sensitivity Analysis and
+Calibration of a Dynamic Physically Based Slope Stability Model. Nat. Hazards Earth Syst. Sci. 2017, 17, 971–992. [CrossRef]
+101. Hammond, C. Level I Stability Analysis (LISA) Documentation for Version 2.0; US Department of Agriculture, Forest Service,
+Intermountain Research Station: Ogden, Utah, 1992; Volume 285.
+102. Iverson, R.M. Landslide Triggering by Rain Infiltration. Water Resour. Res. 2000, 36, 1897–1910. [CrossRef]
+103. Di, B.; Stamatopoulos, C.A.; Stamatopoulos, A.C.; Liu, E.; Balla, L. Proposal, Application and Partial Validation of a Simplified
+Expression Evaluating the Stability of Sandy Slopes under Rainfall Conditions. Geomorphology 2021, 395, 107966. [CrossRef]
+104. de Lima Neves Seefelder, C.; Koide, S.; Mergili, M. Does Parameterization Influence the Performance of Slope Stability Model
+Results? A Case Study in Rio de Janeiro, Brazil. Landslides 2017, 14, 1389–1401. [CrossRef]
+105. Schilirò, L.; Cepeda, J.; Devoli, G.; Piciullo, L. Regional Analyses of Rainfall-Induced Landslide Initiation in Upper Gudbrandsdalen (South-Eastern Norway) Using TRIGRS Model. Geosciences 2021, 11, 35. [CrossRef]
+106. Ines, A.V.M.; Droogers, P. Inverse Modelling in Estimating Soil Hydraulic Functions: A Genetic Algorithm Approach. Hydrol.
+Earth Syst. Sci. 2002, 6, 49–66. [CrossRef]
+107. Mohanty, B.P. Soil Hydraulic Property Estimation Using Remote Sensing: A Review. Vadose Zone J. 2013, 12, 1–9. [CrossRef]
+108. Thomas, J.; Gupta, M.; Srivastava, P.K.; Pandey, D.K.; Bindlish, R. Development of High-Resolution Soil Hydraulic Parameters
+with Use of Earth Observations for Enhancing Root Zone Soil Moisture Product. Remote Sens. 2023, 15, 706. [CrossRef]
+Disclaimer/Publisher’s Note: The statements, opinions and data contained in all publications are solely those of the individual
+author(s) and contributor(s) and not of MDPI and/or the editor(s). MDPI and/or the editor(s) disclaim responsibility for any injury to
+people or property resulting from any ideas, methods, instructions or products referred to in the content.
+
+

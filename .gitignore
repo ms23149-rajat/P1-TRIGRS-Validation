@@ -1,0 +1,44 @@
+# Large generated TRIGRS/TopoIndex output grids (any depth)
+data/**/*.asc
+data/**/TR*.txt
+data/**/TI*.txt
+data/**/TRgrid_size.txt
+
+# Large listing files
+**/TRlist_*.txt
+*.zip
+
+# Logs
+*.log
+TrigrsLog*.txt
+TopoIndexLog*.txt
+
+# Compiled binaries and object files
+src/TRIGRS/*.o
+src/TRIGRS/*.mod
+src/TRIGRS/trg
+src/TRIGRS/tpx
+src/TRIGRS/prg
+src/TopoIndex/*.o
+*.bak
+
+# Large rainfall/era5 data
+era5_extract/*.nc
+data/idukki/trigrs_input/rainfall/*.asc
+
+# Large input grids
+data/idukki/trigrs_input/*.asc
+
+# Raw SRTM tiles and large derived DEM rasters (regeneratable)
+data/idukki/dem/*.hgt
+data/idukki/dem/*.tif
+data/idukki/dem/*.vrt
+
+# Compressed listing files (very large, regeneratable from a run)
+*.txt.gz
+
+# Compiled binary
+trg
+
+# GDAL VRT mosaic index (large, references global dataset, regeneratable)
+data/idukki/dem/idukki_bbox.txt

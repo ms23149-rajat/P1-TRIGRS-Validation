@@ -17,7 +17,7 @@ OBJX77 = isvgrd.o mpfldr.o rdflodir.o sindex.o slofac.o srdgrd1.o
 LIBS =
 
 CC = gcc -O3
-CCFLAGS = -lgsl -lgslcblas -lm
+CCFLAGS = -lm
 FC = f95 -w -O3 
 FFLAGS =
 F90 = f95 -w -O3
