@@ -33,29 +33,6 @@ Throughout its development, the code has passed through various kinds of testing
 References cited
 ----------------
 
-*   Alvioli Massimiliano, and Baum, R.L., 2016, Parallelization of the TRIGRS model for rainfall-induced landslides using the message passing interface: Environmental Modeling & Software, v. 81, p. 122 - 135, doi: 10.1016/j.envsoft.2016.04.002. 
-
-*   Baum, R.L., Savage, W.Z., and Godt, J.W., 2002, TRIGRS--A FORTRAN Program for Transient Rainfall Infiltration and Grid-Based Regional Slope-Stability Analysis: U.S. Geological Survey Open-File Report 02-0424, 35 p., 2 appendices. https://doi.org/10.3133/ofr02424
+*   Alvioli, Massimiliano, and Baum, R.L., 2016, Parallelization of the TRIGRS model for rainfall-induced landslides using the message passing interface: Environmental Modeling & Software, v. 81, p. 122-135, doi: 10.1016/j.envsoft.2016.04.002.
 
 *   Baum, R.L., Savage, W.Z., and Godt, J.W., 2008, TRIGRS--A Fortran program for transient rainfall infiltration and grid-based regional slope-stability analysis, version 2.0: U.S. Geological Survey Open-File Report, 2008-1159, 75 p. https://doi.org/10.3133/ofr20081159
-
-*   Baum, R. L., Godt, J.W., and Savage, W. Z., 2010, Estimating the timing and location of shallow rainfall-induced landslides using a model for transient, unsaturated infiltration: Journal of Geophysical Research, Earth Surface. v. 115, F03013, doi:10.1029/2009JF001321.
-
-*   Baum, R.L., Godt, J.W., and Coe, J.A., 2011, Assessing susceptibility and timing of shallow landslide and debris flow initiation in the Oregon Coast Range, USA, In Genevois, R. Hamilton, D.L. and Prestininzi, A. (eds.) Proceedings of the Fifth International Conference on Debris Flow Hazards Mitigation--Mechanics, Prediction, and Assessment, Padua, Italy, June 7-11, 2011, p. 825-834. Rome: Casa Editrice Universitá La Sapienza (doi: 10.4408/IJEGE.2011-03.B-090).
-
-*   Baum, R.L., and Godt, J.W., 2013, Correction to "Estimating the timing and location of shallow rainfall-induced landslides using a model for transient, unsaturated infiltration": Journal of Geophysical Research, Earth Surface, v. 118, 20100, doi:10.1002/jgrf.20100.
-
-*   Gioia, Eleonora, Speranza, Gabriella, Ferretti, Maurizio, Godt, Jonathan W., Baum, Rex L., Marincioni, Fausto, 2015, Application of a process-based shallow landslide hazard model over a broad area in Central Italy: Landslides, doi: 10.1007/s10346-015-0670-6, p. 1-18.
-
-*   Godt, J.W., Baum, R.L., Savage, W.Z., Salciarini, D., Schulz, W.H., and Harp, E.L., 2008a, Transient deterministic shallow landslide modeling--Requirements for susceptibility and hazard assessments in a GIS framework: Engineering Geology, v. 102, no. 3-4, Landslide Susceptibility, Hazard and Risk Zoning for Land Use Planning,  p. 214-226, DOI: 10.1016/j.enggeo.2008.03.019.
-
-*   Godt, J.W., Schulz, W.H., Baum, R.L., and Savage, W.Z., 2008b, Modeling rainfall conditions for shallow landsliding in Seattle, Washington, in Baum, R.L., Godt, J.W., and Highland, L.M., eds., Engineering geology and landslides of the Seattle, Washington, area: Geological Society of America Reviews in Engineering Geology, v. XX, p.137-152, doi: 10.1130/2008.4020(08)
-
-*   Raia, S., Alvioli, M., Rossi, M., Baum, R. L., Godt, J. W., and Guzzetti, F., 2014, Improving predictive power of physically based rainfall-induced shallow landslide models: a probabilistic approach: Geoscientific Model Development, Vol. 7, p. 495-514, doi:10.5194/gmd-7-495-2014, 2014.
-
-*   Salciarini, D., Godt, J.W., Savage, W.Z., Conversini, P., Baum, R.L., and Michael, J.A., 2006, Modeling regional initiation of rainfall-induced shallow landslides in the eastern Umbria Region of central Italy: Landslides, v. 3, no. 3, p. 181-194, DOI 10.1007/s10346-006-0037-0
-
-*   Savage, W.Z., Godt, J.W., and Baum, R.L., 2003, A model for spatially and temporally distributed shallow landslide initiation by rainfall infiltration, in Rickenmann, D. and Chen, C., eds., Debris-Flow Hazards Mitigation--Mechanics, Prediction, and Assessment: Rotterdam, Millpress (Proceedings of the 3rd International conference on Debris Flow Hazards, Davos, Switzerland, September 10-13, 2003), p. 179-187.
-
-*   Savage, W.Z., Godt, J.W., and Baum, R.L., 2004, Modeling time-dependent aerial slope stability, in Lacerda, W.A., Erlich, M., Fontoura, S.A.B., and Sayao, A.S.F., eds., Landslides--evaluation and stabilization, Proceedings of the 9th International Symposium on Landslides: London, A.A. Balkema Publishers, v. 1, p. 23-36.
-

@@ -32,7 +32,7 @@ An option controlling the behavior of the TRIGRS program for unsaturated infiltr
 
 Lines 86 and 87 control an option that was added for convenience in preparing pressure head data for the Scoops3D program using the ijz and XMDV file formats described previously.  The option can be deactivated for all other uses by entering a negative numerical value followed by any four-character text string as shown on line 87.  For use with Scoops3D, this option allows the user to specify the depth and method of computation for estimating pressure head at depth.  The Scoops3D program uses this deep value and the basal value computed by the infiltration model to linearly interpolate pressure head at intervening depths.  The four methods of estimating the pressure head at this deep point are (1) setting it to floating point zero (“zero”), which is the default value, (2) slope parallel flow (“flow”), assuming flow parallel to the slope at the ground surface for each grid cell, (3) hydrostatic pressure (“hydr”), which makes the pressure head equal to the specified depth, and (4) relative height, (“relh”). This option compares the local topographic relief at the grid point to the total relief in the DEM to compute the relative height and uses a fraction of the relative height to reduce and smooth the hydrostatic pressure distribution.  Thus, 
 
-![Equation 1](ugEq1.png)
+![Equation 1](assets/ugEq1.png)
 
 where &psi;<sub>k,deep</sub> is the pressure head estimate for the deep point, the subscript k denotes the kth grid point, at coordinates i, j.  In equation 1, Z is the vertical coordinate direction, Z<sub>k,w</sub> is the elevation of the initial water table, Z<sub>k,deep</sub>, is the elevation of the deep point, E<sub>k</sub> is the ground surface elevation at grid point k, E<sub>min</sub> is the ground surface elevation of the lowest point in the DEM and E<sub>max</sub> is the ground surface elevation of the highest point in the DEM.
 
@@ -194,7 +194,7 @@ In the parallel implementation of the new version of the TRIGRS code, we modifie
 
 The modifications needed to have the TRIGRS code to be run in parallel consisted of i) parallelizing the file reading procedures; ii) parallelizing the core computation subroutine; iii) adding new code to collect individual, partial results from all the processes in the MPI pool to one master process (see Fig. 1). 
 
-![Figure 1](ugFig1.png "Figure 1. The three steps singled out in designing the structure of the parallel version of TRIGRS, v2.1.")
+![Figure 1](assets/ugFig1.png "Figure 1. The three steps singled out in designing the structure of the parallel version of TRIGRS, v2.1.")
 
 **Figure 1. The three steps singled out in designing the structure of the parallel version of TRIGRS, v2.1.**
 
@@ -215,7 +215,7 @@ Parallel program operation
 Requirements for using the parallel version of the software are a modern FORTRAN compiler (as in the serial code case) and MPI libraries. The code has been tested with gfortran/f95 compilers, Open MPI/MPICH parallel libraries, under Ubuntu Linux 12.0, CentOS 7.0 and Cygwin with GNU make.
 The software performance has been measured on: 1) Ubuntu 14.04 LTS Linux installed on a 16-cores quad-processor for a total of 64 cores, equipped with 196GB RAM and storage space accessible through standard Network File System; 2) a high-performance machine, namely the Galileo cluster at computing center CINECA, Italy <http://www.hpc.cineca.it/hardware/galileo>; 3) an OpenStack cloud implementation at CERN. The code was run with up to Np = 256, divided in computing nodes with 16 cores each on the high/performance machine. The results for performance gain are extensively discussed in (Alvioli and Baum, 2016) and in (Alvioli et al., 2016). Partial results from the references above can be summarized in Fig. 2, where the computing time is plotted as a function of the number of processes Np in the MPI pool, for different numbers of cells in the study area. For relatively small problem sizes, no performance degradation is found in the Np range we tested. For the two larger problem sizes, there is a minimum after which the running time starts increasing again, and the minimum locates at smaller Np for larger problem size. These considerations must be kept in mind when deciding how many processes to include in the MPI pool. If many, repeated simulations are necessary, and for vary large problem sizes, it may be worth performing a preliminary scan similar to the one of Fig. 2, to optimize Np beforehand.
 
-![Figure 2](ugFig2.png "Figure 2. Overall running time as a function of the number of MPI processes")
+![Figure 2](assets/ugFig2.png "Figure 2. Overall running time as a function of the number of MPI processes")
 
 **Figure 2. Overall running time, TTot, as a function of the number of MPI processes, Np, for various dataset sizes obtained from a single dataset by changing the working resolution. “2” (original dataset with artificially increased resolution): 26,800,000 cells; “1” (original dataset): 13,410,000 cells; “1/2”: 6,705,000 cells; “1/4”: 3,352,500 cells; “1/8”: 1,676,250 cells; “1/16”: 838,125 cells.**
 
@@ -288,32 +288,7 @@ Mark Reid and Dianne Brien (both USGS) provided helpful advice and information w
 
 References cited
 ----------------
+
 + Alvioli, M. and Baum, R.L., 2016, Parallelization of the TRIGRS model for rainfall-induced landslides using the message passing interface: Environmental Modelling & Software, v. 81, p. 122 - 135, doi: 10.1016/j.envsoft.2016.04.002
 
-+ Alvioli, M., Spiga, D., Baum, R.L., 2016. Evaluation of the parallel performance of the TRIGRS v2. 1 model for rainfall-induced landslides. PeerJ Preprints, 4, e2206v1.
-
-+ Baum, R.L., Savage, W.Z., and Godt, J.W., 2002, TRIGRS--A FORTRAN Program for Transient Rainfall Infiltration and Grid-Based Regional Slope-Stability Analysis: U.S. Geological Survey Open-File Report 02-0424, 35 p., 2 appendices.
-
 + Baum, R.L., Savage, W.Z., and Godt, J.W., 2008, TRIGRS—A Fortran program for transient rainfall infiltration and grid-based regional slope-stability analysis, version 2.0: U.S. Geological Survey Open-File Report, 2008-1159, 75 p.
-
-+ Baum, R. L., Godt, J.W., and Savage, W. Z., 2010, Estimating the timing and location of shallow rainfall-induced landslides using a model for transient, unsaturated infiltration: Journal of Geophysical Research, Earth Surface. v. 115, F03013, doi:10.1029/2009JF001321
-
-+ Baum, R.L., and Godt, J.W., 2013, Correction to “Estimating the timing and location of shallow rainfall-induced landslides using a model for transient, unsaturated infiltration” Journal of Geophysical Research Earth Surface, v. 118, DOI: 10.1002/jgrf.20100  
-
-+ Brien, D.L., and Reid, M.E., 2008, Assessing deep-seated landslide susceptibility using 3-D groundwater and slope-stability analyses, southwestern Seattle, Washington in Baum, R.L., Godt, J.W., and Highland, L.M., eds., Engineering geology and landslides of the Seattle, Washington, area: Geological Society of America Reviews in Engineering Geology v. XX, p. 83-101, doi: 10.1130/2008.4020(05).
-
-+ Carslaw, H.S., and Jaeger, J.C., 1959, Conduction of Heat in Solids (2d ed.): New York, Oxford University Press, 510 p.
-
-+ Iverson, R.M., 2000, Landslide triggering by rain infiltration: Water Resources Research, v. 36, no. 7, p. 1,897–1,910.
-
-+ MPI Forum, 2012. Message Passing Interface (MPI) Forum Home Page. http://www.mpi-forum.org/
-
-+ Reid, M.E., Christian, S.B., and Brien, D.L., 2000, Gravitational stability of three-dimensional stratovolcano edifices: Journal of Geophysical Research, v. 105, no. B3, p. 6043-6056.
-
-+ Reid, M.E., Christian, S.B., Brien, D.L., and Henderson, S.T., 2015, Scoops3D—Software to analyze 3D slope stability throughout a digital landscape: U.S. Geological Survey Techniques and Methods, book 14, chap. A1, 218 p., http://dx.doi.org/10.3133/tm14A1.
-
-+ Savage, W.Z., Godt, J.W., and Baum, R.L., 2003, A model for spatially and temporally distributed shallow landslide initiation by rainfall infiltration, in Rickenmann, D. and Chen, C., eds., Debris-Flow Hazards Mitigation—Mechanics, Prediction, and Assessment: Rotterdam, Millpress (Proceedings of the 3rd International conference on Debris Flow Hazards, Davos, Switzerland, September 10-13, 2003), p. 179-187.
-
-+ Savage, W.Z., Godt, J.W., and Baum, R.L., 2004, Modeling time-dependent aerial slope stability, in Lacerda, W.A., Erlich, M., Fontoura, S.A.B., and Sayao, A.S.F., eds., Landslides—Evaluation and stabilization, Proceedings of the 9th International Symposium on Landslides: London, A.A. Balkema Publishers, v. 1, p. 23–36.
-
-+ Srivastava, R., and Yeh, T.-C. J., 1991, Analytical solutions for one-dimensional, transient infiltration toward the water table in homogeneous and layered soils: Water Resources Research v. 27, p. 753–762.
