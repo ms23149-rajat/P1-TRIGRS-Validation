@@ -35,7 +35,29 @@ P1-TRIGRS-Validation/
 ├── benchmark_docs/
 │   └── Validation_Summary.md
 ├── figures/
-├── scripts/
+├── src/
+│   ├── TRIGRS/
+│   ├── TopoIndex/
+│   ├── GridMatch/
+│   └── UnitConvert/
+├── data/idukki/
+│   ├── dem/
+│   ├── trigrs_input/
+│   └── rainfall/
+├── assets/
+│   ├── break_cycles.py
+│   ├── download_era5_idukki.py
+│   ├── code.json
+│   ├── fos_colors.txt
+│   └── ugEq1.png, ugFig1.png, ugFig2.png, ugPsi.png
+├── tr_in.txt                   (TRIGRS init file - must stay at root)
+├── tpx_in.txt                  (TopoIndex init file - must stay at root)
+├── uc_in.txt                   (UnitConvert init file - must stay at root)
+├── gm_in.txt                   (GridMatch init file - must stay at root)
+├── DISCLAIMER.md
+├── LICENSE.md
+├── TRIGRS_TECHNICAL_README.md
+├── USER_GUIDE.md
 └── README.md
 ```
 
