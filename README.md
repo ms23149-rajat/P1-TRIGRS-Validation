@@ -33,20 +33,31 @@ P1-TRIGRS-Validation/
 │   ├── Flume/
 │   └── SY91/
 ├── benchmark_docs/
-│   └── Validation_Summary.md
+│   ├── Validation_Summary.md
+│   ├── Workflow.md
+│   ├── Reproduce_Benchmark_Results.md
+│   └── Common_Issues_and_Fixes.md
 ├── figures/
 ├── src/
 │   ├── TRIGRS/
 │   ├── TopoIndex/
 │   ├── GridMatch/
 │   └── UnitConvert/
-├── data/idukki/
-│   ├── dem/
-│   ├── trigrs_input/
-│   └── rainfall/
+├── data/
+│   ├── tutorial/
+│   ├── MinorCreek/
+│   ├── flume/
+│   ├── sy91/
+│   ├── gridmatch/
+│   └── idukki/
+│       ├── dem/
+│       ├── trigrs_input/
+│       ├── rainfall/
+│       └── results_baseline/
 ├── assets/
 │   ├── break_cycles.py
 │   ├── download_era5_idukki.py
+│   ├── idukki_tpx_in.txt
 │   ├── code.json
 │   ├── fos_colors.txt
 │   └── ugEq1.png, ugFig1.png, ugFig2.png, ugPsi.png
