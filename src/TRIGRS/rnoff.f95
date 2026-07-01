@@ -51,7 +51,7 @@ if(ans) then
       write(*,*) 'Error, nwf <imax, reset nwf to ',nwf*2 
       write(*,*) 'If errors occur in runoff routing, check "TI_grid_size.txt" for correct value of nwf!'
     end if
-  allocate (dsc(nwf),wf(nwf))
+  allocate (dsc(nwf+1),wf(nwf+1))
   wf=0.; dsc=0
 !  read numbers of subjacent cells
   call irdgrd(grd,col,ncol,nrow,celsiz,nodata,mnd,&
@@ -74,7 +74,7 @@ if(ans) then
   close (u(20))
   infil=wffil
   open (u(21),file=infil,status='old',err=400)
-  call srdswm(nwf,imax,u(21),test1,wf,dsctr,u(19))
+  call srdswm(nwf,imax,u(21),-1.,wf,dsctr,u(19))
   close (u(21))
 !  compute normalized infiltration intensities, Itransient/Ks, rik,
   write(u(19),*) ''
@@ -203,7 +203,7 @@ else
   write(u(19),*) '*******************************************'
 ! Added 2/2/2011 RLB
   nwf=1 
-  allocate (dsc(nwf),wf(nwf))
+  allocate (dsc(nwf+1),wf(nwf+1))
   do j=1,nper
 !  read precipitation intensity, I
     if (cri(j).lt.0) then
