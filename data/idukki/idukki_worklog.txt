@@ -1,1 +1,20 @@
 10-Jun-2026: Started Idukki TRIGRS project using published parameters from Thomas et al. (2023).
+
+--- 2026-07-01 ---
+CRITICAL FIX: slope grid was generated with gdaldem slope -p (percent slope)
+instead of degrees. All values were ~2x too high, max 550° instead of 79.7°.
+This corrupted all FS calculations in the first complete TRIGRS run.
+
+Fix: regenerated idukki_slope_degrees_utm30m_raw.tif without -p flag,
+filled 87621 boundary cells via nearest-neighbor, applied DEM nodata mask,
+wrote to data/idukki/trigrs_input_utm/idukki_slope_utm30m.asc.
+
+Also fixed in this session (see commit 43658e2):
+- rnoff.f95: srdswm separator was test1=-9999, should be -1.0 (heap crash)
+- rnoff.f95: dsc/wf allocated nwf+1 (TopoIndex off-by-one)
+- TI file nodata headers: -1 vs -9999 mismatch resolved
+
+Verified run (PID 6557, ~3.5h runtime):
+- 10035422 cells, 0 nonconvergent, 0 extreme values
+- t=1: mean FS=4.158, FS<1.0=5.55%
+- t=10: mean FS=4.143, FS<1.0=5.81%
