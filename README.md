@@ -1,293 +1,68 @@
-# P1-TRIGRS Validation
+# P-7 — r.slope.stability
 
-## Overview
+**Status: RUNS** — core engine and 6 of 7 single-process official example workflows confirmed end-to-end; the multi-core tiling wrapper has a documented, root-caused GRASS 8.3.2 incompatibility (see `notes.md`).
 
-This repository documents the installation, compilation, and benchmark
-testing of TRIGRS (Transient Rainfall Infiltration and Grid-Based Regional
-Slope Stability Analysis) as part of the IIT Kanpur SURGE 2026 Project P1.
+**Intern:** Rajat (rajat-surge2026), SURGE/SARIP 2026, Group B
+**Supervisor:** Dr. Shyam Nandan
+**Workstation:** labws2 (Ubuntu 24.04.4 LTS, GRASS GIS 8.3.2, R 4.3.3)
 
-**Scope note:** This repository covers installation, compilation, and
-benchmark testing (Tutorial, MinorCreek, Flume, SY91), as well as a
-real-terrain application exercise for Idukki, Kerala, attempting to
-reproduce a rainfall-induced shallow landslide simulation for the August
-2018 Kerala flood event using published soil parameters and real ERA5
-rainfall data. The benchmark tests are quantitatively/qualitatively
-validated as detailed below. The Idukki application is a complete,
-reproducible preprocessing-through-execution pipeline, but did not achieve
-a physically meaningful temporal Factor-of-Safety response — see
-[Idukki Application](#idukki-real-terrain-application) below for full
-detail on what worked and what remains unresolved.
+## What this model is
 
-## Repository Structure
+r.slope.stability is a GRASS GIS module for physically-based slope-stability analysis over large areas. It tests large numbers of randomly placed, randomly sized ellipsoidal slip surfaces against a 3-D limit-equilibrium (Hovland) model, reporting either a per-pixel Factor of Safety (FoS) or — by sampling cohesion, friction angle, and depth across their measured uncertainty ranges — a per-pixel slope failure probability (Pf). It also supports splitting large study areas into overlapping tiles for parallel processing across CPU cores.
 
-```
-P1-TRIGRS-Validation/
-├── benchmark_tests/
-│   ├── Tutorial/
-│   ├── MinorCreek/
-│   ├── Flume/
-│   └── SY91/
-├── benchmark_test_results/
-│   ├── Tutorial/
-│   ├── MinorCreek/
-│   ├── Flume/
-│   └── SY91/
-├── benchmark_docs/
-│   ├── Validation_Summary.md
-│   ├── Workflow.md
-│   ├── Reproduce_Benchmark_Results.md
-│   └── Common_Issues_and_Fixes.md
-├── figures/
-├── src/
-│   ├── TRIGRS/
-│   ├── TopoIndex/
-│   ├── GridMatch/
-│   └── UnitConvert/
-├── data/
-│   ├── tutorial/
-│   ├── MinorCreek/
-│   ├── flume/
-│   ├── sy91/
-│   ├── gridmatch/
-│   └── idukki/
-│       ├── dem/
-│       ├── trigrs_input/
-│       ├── rainfall/
-│       └── results_baseline/
-├── assets/
-│   ├── break_cycles.py
-│   ├── download_era5_idukki.py
-│   ├── idukki_tpx_in.txt
-│   ├── code.json
-│   ├── fos_colors.txt
-│   └── ugEq1.png, ugFig1.png, ugFig2.png, ugPsi.png
-├── tr_in.txt                   (TRIGRS init file - must stay at root)
-├── tpx_in.txt                  (TopoIndex init file - must stay at root)
-├── uc_in.txt                   (UnitConvert init file - must stay at root)
-├── gm_in.txt                   (GridMatch init file - must stay at root)
-├── DISCLAIMER.md
-├── LICENSE.md
-├── TRIGRS_TECHNICAL_README.md
-├── USER_GUIDE.md
-└── README.md
+## Source papers
+
+- Mergili, M., Marchesini, I., Alvioli, M., Metz, M., Schneider-Muntau, B., Rossi, M., Guzzetti, F. (2014a). A strategy for GIS-based 3-D slope stability modelling over large areas. *Geoscientific Model Development*, 7, 2969–2982.
+- Mergili, M., Marchesini, I., Rossi, M., Guzzetti, F., Fellin, W. (2014b). Spatially distributed three-dimensional slope stability modelling in a raster GIS. *Geomorphology*, 206, 178–195.
+
+## Code source
+
+Authors' own distribution, **not** the official GRASS Addons repository: https://www.landslidemodels.org/r.slope.stability/
+
+Version used: `r.slope.stability20pre_20210715.zip` (2.0 Pre-release, 15 July 2021). The authors built and tested this version against GRASS 7.8 and Ubuntu 20.04; the lab workstation runs GRASS 8.3.2 — a two-major-version gap that is the source of every compatibility issue documented in `notes.md`.
+
+## Test data used
+
+Both datasets come from the authors' own training-data page (https://www.landslidemodels.org/r.slope.stability/data.php), not from the original 2014 papers directly — the papers' field-measured Collazzone dataset is not publicly bundled.
+
+- **Slideslope**: a small (200×200 cell, 1 m resolution) synthetic, computer-generated slope, used for the single-ellipsoid soil-class and layer-mode examples.
+- **Slideland**: a larger (~9.26M cell, 5 m resolution) terrain dataset. Per the authors' own documentation, the DEM was "modified from existing data" and the observed-landslide layer is drawn from the real IFFI inventory (CC BY-SA 4.0); every other layer and the geotechnical parameters used in the start script are explicitly fictitious. The coordinates and the page's own image caption suggest this is Collazzone-shaped terrain, but **this is the authors' bundled demonstration dataset, not the field-measured dataset behind the 2014 papers' own validation** — worth stating precisely in any further write-up.
+
+## What was confirmed to run
+
+| Run | Mode | Result |
+|---|---|---|
+| `so_sing_class` | Slideslope, soil-class mode, single ellipsoid | FoS = 0.842 |
+| `so_sing_lyr` | Slideslope, layer mode, single ellipsoid | FoS = 0.741 |
+| `slx_inf_fos` | Slideland, infinite slope, 1 lithology class | rTP 2.3%, rTN 47.0% |
+| `sly_inf_fos` | Slideland, infinite slope, 5 classes | rTP 1.6%, rTN 71.6% |
+| `sl_inf_fos` | Slideland, infinite slope, 5 classes, varying depth | rTP 2.1%, rTN 63.8% |
+| `sl_ell_fos` | Slideland, ellipsoid FoS, ~1.65M ellipsoids tested | 30.6 s, rTP 3.3%, rTN 51.7% |
+| `sl_ell_newmark` | Slideland, + Newmark seismic | 32.6 s, same confirmation stats |
+| `sl_ell_pf` | Slideland, single-core slope failure probability | 39.0 s, convergence (evolution) data captured |
+
+All eight rows above are the authors' own official example sequence from `sl.slope.stability.start.sh`. rTP/rTN/rFP/rFN are true/false positive/negative rates against the bundled `landslides` observed layer — the same empirical-confirmation metrics reported in the source papers.
+
+The ninth official command, the multi-core tiled version (`sl_ell_pf_tiles`), does not complete through its own automatic wrapper (see below), but the underlying computation was independently confirmed by invoking the compiled core engine (`r.slope.stability.main`) directly inside a manually-launched session: 130 s, 1,659,518 of 1,670,795 ellipsoids valid, `r_fos` (min 0.185) and `r_pfail` (range 0–1, mean 0.43) both written with sane values.
+
+## Known issue: multi-core tiling wrapper
+
+The `-m` (multi-core) flag's automatic tile-splitting and recombination does not work under GRASS GIS 8.3.2. Five GRASS-7-vs-8 compatibility issues were traced and four were fixed directly; the fifth — GRASS's `GRASS_BATCH_JOB` mechanism not auto-executing under the GRASS 8.3.2 `--text` launcher — was root-caused but bypassed rather than patched. Full detail in `notes.md`. In practice, for study areas in the few-hundred-thousand to ~1 million cell range, this isn't a blocker: the core engine runs single-process fast enough that tiling isn't actually required.
+
+## Quick start
+
+```bash
+bash install.sh
 ```
 
-## Validation Status (summary)
+then, from inside a GRASS session opened on the Slideslope location:
 
-The four benchmark cases ran to completion without errors, confirming the
-TRIGRS installation, compilation, and TopoIndex preprocessing are working
-correctly. **Validation against external reference data is partial**, as
-detailed in [`benchmark_docs/Validation_Summary.md`](benchmark_docs/Validation_Summary.md):
+```
+r.slope.stability -t -v prefix=so_sing_class cellsize=1 model=c elevation=dem \
+  soilclass=lithology gwdepth=gwdepth seepage=1 numlayers=5 \
+  depthmaps=depth1,depth2,depth3,depth4,depth5 \
+  geotech=1,1,15000,4000,30,40,1,2,15000,2000,20,35,1,3,15000,2500,40,40,1,4,15000,5000,30,40,1,5,27000,100000,89,0 \
+  elldens=0 ellips=100,100,50,50,25,25,0,0,3,1,100,100,-9999,-9999
+```
 
-| Test | Quantitative reference available? | Status |
-| --- | --- | --- |
-| SY91 | Yes — analytically derived steady-state values | 3/4 checks pass (<0.02% error); 1 check shows expected transient lag (2.55%) |
-| Tutorial | No (USGS Appendix-2 grids unreachable — proxy blocked) | Qualitative pass only — validation pending |
-| MinorCreek | No digitised reference available | Qualitative pass only — validation pending |
-| Flume | No digitised reference available | Qualitative pass only — validation pending |
-
-A direct comparison against the Srivastava & Yeh (1991) Figure 3 curves —
-the stated purpose of the SY91 test — was attempted but not completed,
-because the S&Y semi-infinite analytical solution is degenerate for this
-parameter set (alpha\*L = 10). This is documented as **validation pending**
-in `Validation_Summary.md`.
-
-## Validation Tests
-
-### 1. Tutorial Test
-
-**Objective**
-- Check slope-stability calculations on the synthetic 10 x 10 grid bundled
-  with the distribution.
-
-**Result**
-- Minimum FoS at 2 days = 1.167
-- Minimum FoS at 2.5 days = 0.9817
-
-**Validation basis**
-- Qualitative only. No reference output grids were available (the USGS
-  OFR 2008-1159 Appendix-2 expected-output package could not be downloaded
-  — blocked by the lab network proxy). The result was checked against the
-  *described behaviour* in Baum et al. (2008) Figure 2-3.
-
-**Observation**
-- Rainfall infiltration increased pore-water pressure and reduced slope
-  stability. Several cells reached FoS < 1, consistent with the qualitative
-  behaviour described in the manual for this dataset.
-
-### 2. MinorCreek Test
-
-**Objective**
-- Check rainfall-induced slope instability over a long simulation period,
-  reproducing the setup described by Iverson (2000) and Baum et al. (2008).
-
-**Result**
-- Initial minimum FoS = 1.0123
-- Final minimum FoS = 0.9911
-- Simulation duration = 84 days
-
-**Validation basis**
-- Qualitative only. No digitised reference curve from Iverson (2000) was
-  available for point-by-point comparison.
-
-**Observation**
-- Factor of Safety decreased throughout the profile during the simulation,
-  consistent with the expected long-duration rainfall response. A
-  quantitative comparison against Iverson's published curves was not
-  performed.
-
-### 3. Flume Test
-
-**Objective**
-- Check TRIGRS behaviour against the configuration of the USGS debris-flow
-  flume experiment described by Iverson (2000).
-
-**Result**
-- FoS decreased with depth.
-- FoS remained greater than 1 throughout the profile.
-
-**Validation basis**
-- Qualitative only. No digitised reference curve from Iverson (2000) was
-  available for comparison.
-
-**Observation**
-- The lower part of the profile was less stable than the surface, and no
-  failure occurred under the experimental conditions tested — consistent
-  with the qualitative pattern in Iverson (2000), but not quantitatively
-  verified.
-
-### 4. Srivastava and Yeh (1991) Test
-
-**Objective**
-- Check the unsaturated infiltration formulation against analytically known
-  steady-state pressure-head values.
-
-**Result**
-
-| Time (h) | Surface Pressure Head psi(Z=0) (m) |
-| --- | --- |
-| 0 | -23.022 |
-| 10 | -1.913 |
-| 20 | -1.286 |
-| 40 | -1.081 |
-
-**Validation basis**
-
-Quantitative, against analytically derived steady-state values
-(`psi_ss = (1/alpha) * ln(Iz/Ks)`, Gardner 1958 exponential model):
-
-- IC vs. uniform SS under Iz0=0.1 m/h: TRIGRS = -23.022 m, analytical =
-  -23.026 m -> **0.017% error**. PASS.
-- t=40h surface vs. uniform SS under Iz=0.9 m/h: TRIGRS = -1.081 m,
-  analytical = -1.054 m -> **2.55% error**. Consistent with the surface
-  still asymptotically approaching the new steady state (wetting front not
-  yet fully equilibrated), not a model defect.
-- Wetting front propagates downward monotonically with time. PASS.
-- Water table (Z=100m) held at psi=0 throughout (max deviation < 1e-6 m). PASS.
-
-A direct comparison against the S&Y (1991) Figure 3 curves — the stated
-purpose of this test per the TRIGRS manual — was **not achieved** (S&Y's
-semi-infinite erfc solution is degenerate for alpha\*L=10). This remains
-**validation pending**. See `Validation_Summary.md` for full detail.
-
-**Observation**
-- Pressure head became progressively less negative with time, indicating
-  wetting of the soil profile, with the surface approaching the
-  analytically predicted new steady state. Factor of Safety remained
-  constant at the program's capped maximum (10) because the slope angle
-  was zero, so no FoS-based check is meaningful for this test.
-
-## Overall Conclusion
-
-- TRIGRS was installed and compiled correctly.
-- TopoIndex preprocessing worked correctly.
-- All four benchmark cases ran to completion without errors.
-- The SY91 test passes 3 of 4 quantitative checks against analytically known
-  steady-state values; the fourth shows a deviation consistent with expected
-  transient behaviour rather than a defect.
-- Quantitative comparison against the S&Y (1991) Figure 3 curves, and against
-  reference data for Tutorial, MinorCreek, and Flume, was **not completed** and
-  is documented as **validation pending**.
-
-The installation and basic operation of TRIGRS are confirmed. Quantitative
-benchmark validation against published reference data remains an open item,
-documented honestly per project guidance that "validation pending / partial"
-is an acceptable status for this phase.
-
-## Idukki Real-Terrain Application
-
-### Objective
-
-Reproduce a physically meaningful rainfall-induced shallow landslide
-simulation for Idukki district, Kerala, using soil parameters published in
-Reichenbach et al. (2023, ISPRS Int. J. Geo-Inf.) and real rainfall data
-for the August 2018 Kerala flood event, as a real-terrain complement to the
-synthetic benchmark tests above.
-
-### What was completed
-
-- Full DEM, slope, and soil-zone preprocessing pipeline for Idukki, built
-  from scratch (no pre-packaged TRIGRS dataset existed for this site,
-  unlike the benchmark cases).
-- A persistent TopoIndex non-convergence issue (the array-sort routine
-  stalling indefinitely on a fixed correction count) was diagnosed as
-  cyclic dependencies in the flow-direction grid and resolved with a
-  DFS-based cycle-breaking script, [`break_cycles.py`](break_cycles.py).
-  TopoIndex now converges and produces all required routing files.
-- Real ERA5 rainfall was extracted for the correct Idukki coordinates
-  (~9.9N, 77.0E) for August 11-19, 2018, capturing the antecedent build-up
-  and the Aug 15 flood peak (70.8 mm/day).
-- TRIGRS runs end-to-end without errors using the published soil
-  parameters (cohesion, friction angle, unit weight, Ksat, hydraulic
-  diffusivity) and the real rainfall series.
-- Pressure head becomes non-zero and water table depth grids respond
-  physically to rainfall input (confirmed: ~1.06 million cells shift
-  between t=0 and t=24h).
-
-### What was not achieved
-
-- The Factor of Safety output (`TRfs_min_idukki_*.asc`) is identical
-  across all output timesteps despite confirmed water table movement.
-  This was traced to `TRfs_min`/`TRp_at_fs_min` storing the running
-  minimum across the full simulation rather than a per-timestep snapshot,
-  so they report the worst case (typically the initial condition)
-  regardless of later dynamics.
-- The underlying unsaturated-zone switch (`igcap`, governed by
-  `dcf = depth - 1/alpha`) is highly sensitive for the thin soil depths in
-  this dataset (0.5-3.5 m); `dcf` frequently evaluates to <=0, forcing a
-  fallback to the saturated model, which shows negligible transient
-  response because period rainfall intensity rarely exceeds Ksat for more
-  than one period at a time.
-- Multiple parameter combinations were attempted (alpha 0.1-3.0 m-1, water
-  table depth 0.1-2.0 m, flow direction slope/hydro/gener, psi0 on/off,
-  saturated vs. unsaturated forced via source patch) without producing a
-  temporally-varying FoS grid output.
-
-### Status
-
-The Idukki preprocessing and execution pipeline is complete and
-reproducible end-to-end. Per-timestep FoS extraction remains an open
-item, requiring either (a) parsing the detailed Z-P-Fs listing file
-directly rather than relying on the `TRfs_min` envelope grids, or
-(b) further investigation into the `igcap`/`dcf` threshold behaviour in
-`unsfin.f95`/`trini.f95` for shallow soil profiles. Documented here as a
-known limitation, consistent with the validation-pending status used
-elsewhere in this repository where a result is incomplete but the
-process and findings are reproducible and honestly reported.
-
-## References
-
-- Baum, R.L., Savage, W.Z., and Godt, J.W., 2008, TRIGRS-A Fortran program for
-  transient rainfall infiltration and grid-based regional slope-stability
-  analysis, version 2.0: U.S. Geological Survey Open-File Report 2008-1159, 75 p.
-- Alvioli, M., and Baum, R.L., 2016, Parallelization of the TRIGRS model for
-  rainfall-induced landslides using the message passing interface:
-  Environmental Modelling & Software, v. 81, p. 122-135.
-- Iverson, R.M., 2000, Landslide triggering by rain infiltration: Water
-  Resources Research, v. 36, no. 7, p. 1897-1910.
-- Srivastava, R., and Yeh, T.-C.J., 1991, Analytical solutions for
-  one-dimensional, transient infiltration toward the water table in
-  homogeneous and layered soils: Water Resources Research, v. 27, p. 753-762.
-- Reichenbach, P., and others, 2023, Physically based slope stability
-  model to evaluate timing and distribution of rainfall-induced shallow
-  landslides: ISPRS International Journal of Geo-Information, v. 12, no. 2.
+A successful run prints `Number of valid ellipsoids: 1 out of 1.` and a Factor of Safety around 0.84 — confirming the install before moving on to the larger Slideland examples.
