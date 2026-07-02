@@ -1,0 +1,8 @@
+
+TRIGRS P-1 Validation — Idukki August 2018
+===========================================
+ROC-AUC  : 0.7070
+SRC-AUC  : 0.7192
+Inventory: 2,219 points (valid cells)
+FS<1.0 at inventory: 29 (1.3%)
+Domain FS<1.0: 582,803 (5.8%)
