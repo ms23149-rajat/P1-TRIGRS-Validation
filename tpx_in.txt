@@ -1,13 +1,13 @@
 TopoIndex 1.0.15; Name of project (up to 255 characters)
-Idukki DEM TopoIndex analysis
+Idukki UTM 30m DEM TopoIndex analysis
 Flow-direction numbering scheme (ESRI=1, TopoIndex=2)
 1
 Exponent, Number of iterations
 -1,        1000
 Name of elevation grid file
-data/idukki/trigrs_input/idukki_dem_90m.asc
+data/idukki/dem_utm/idukki_dem_utm30m_masked.asc
 Name of direction grid
-data/idukki/dem/idukki_flow_dir_acyclic.asc
+data/idukki/dem_utm/idukki_flowdir_arcgis_utm30m_final.asc
 Save listing of D8 downslope neighbor cells?  Enter T (.true.) or F (.false.)
 T
 Save grid of D8 downslope neighbor cells? Enter T (.true.) or F (.false.)
