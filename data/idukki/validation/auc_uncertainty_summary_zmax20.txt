@@ -1,0 +1,8 @@
+TRIGRS P-1 — AUC Uncertainty (Prof. Nandan review point 2)
+Full-population AUC (10,033,222 negatives): 0.7223
+Bootstrap mean (100 seeds): 0.7219 +/- 0.0076
+Bootstrap range: [0.7048, 0.7411]
+95% CI: [0.7058, 0.7374]
+
+Reportable: "ROC-AUC = 0.722 (full population); bootstrap 95% CI
+[0.706, 0.737] across 100 seeds."
